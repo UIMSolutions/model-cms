@@ -1,0 +1,38 @@
+{
+    "authors": ["UI Manufaktur UG"],
+    "copyright": "Copyright © 2017 - 2020, UI Manufaktur UG",
+    "description": "Model for CMS applications",
+    "license": "MIT",
+    "name": "model-cms",
+	"dependencies": {
+		"colored": "~>0.0.23",
+		"vibe-d": "~>0.9.4"
+	},
+    "sourcePaths": [
+        "../../LIBS/uim-core",
+        "../../LIBS/uim-oop",
+        "../../LIBS/uim-models",
+        "../../LIBS/uim-jsonbase",
+		"../../LIBS/uim-entities",
+		"../../LIBS/uim-entitybase",
+        "./"
+    ],
+    "importPaths": [
+        "../../LIBS/uim-core",
+        "../../LIBS/uim-oop",
+        "../../LIBS/uim-models",
+        "../../LIBS/uim-jsonbase",
+		"../../LIBS/uim-entities",
+		"../../LIBS/uim-entitybase",
+        "./"
+    ],
+	"configurations": [
+		{
+			"name": "offline"
+		},
+		{
+			"name": "model_cms",
+			"versions": ["model_cms"]
+		}
+	]
+}
