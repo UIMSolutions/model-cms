@@ -3,11 +3,6 @@ module models.cms.entities.news;
 @safe:
 import models.cms;
 
-static this() {
-  createEntities[DCMSNewsItem.namespace] = (Json json) => CMSNewsItem(json); 
-  createEntities["cmsNewsItem"] = (Json json) => CMSNewsItem(json); 
-  createEntities["newsItem"] = (Json json) => CMSNewsItem(json); 
-}
 
 class DCMSNewsItem : DCMSPost {
   this() { super(); this.pool("news"); }
@@ -16,15 +11,17 @@ class DCMSNewsItem : DCMSPost {
   }
 
   static string namespace = moduleName!DCMSNewsItem;
-  override string entityPath() { return moduleName!DCMSNewsItem; }
+  override string entityPath() { return "cms/news"; }
   override string entityClass() { return "cmsNewsItem"; }
   override string entityClasses() { return "cmsNewsItems"; }  
 
     
   mixin(SProperty!("UUID", "news"));
 
-  override void fromJson(Json aJson) {
-    if (aJson == Json(null)) return;
+  override DOOPEntity newEntity() { return CMSNewsItem; }
+
+  override DOOPEntity fromJson(Json aJson) {
+    if (aJson == Json(null)) return this;
     super.fromJson(aJson);
     
     foreach (keyvalue; aJson.byKeyValue) {
@@ -35,6 +32,7 @@ class DCMSNewsItem : DCMSPost {
         default: break;
       }      
     }
+    return this;
   }
 
   override Json toJson(string[] showFields = null, string[] hideFields = null) {    
@@ -52,3 +50,5 @@ class DCMSNewsItem : DCMSPost {
 }
 auto CMSNewsItem() { return new DCMSNewsItem; }
 auto CMSNewsItem(Json json) { return new DCMSNewsItem(json); }
+
+

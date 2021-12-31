@@ -3,20 +3,16 @@ module models.cms.entities.link;
 @safe:
 import models.cms;
 
-static this() {
-  createEntities[DCMSLink.namespace] = (Json json) => CMSLink(json); 
-  createEntities["cmsLink"] = (Json json) => CMSLink(json); 
-  createEntities["link"] = (Json json) => CMSLink(json); 
-}
-
 class DCMSLink : DCMSPost {
   this() { super(); this.pool("links"); }
   this(Json newJson) {
       this(); this.fromJson(newJson);
   }
 
+  override DOOPEntity newEntity() { return CMSLink; }
+
   static string namespace = moduleName!DCMSLink;
-  override string entityPath() { return moduleName!DCMSLink; }
+  override string entityPath() { return "cms/link"; }
   override string entityClass() { return "cmsLink"; }
   override string entityClasses() { return "cmsLinks"; }  
 }

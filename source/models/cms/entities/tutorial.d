@@ -3,12 +3,6 @@ module models.cms.entities.tutorial;
 @safe:
 import models.cms;
 
-static this() {
-  createEntities[DCMSTutorial.namespace] = (Json json) => CMSTutorial(json); 
-  createEntities["cmsTutorial"] = (Json json) => CMSTutorial(json); 
-  createEntities["tutorial"] = (Json json) => CMSTutorial(json); 
-}
-
 class DCMSTutorial : DCMSPost {
   this() { super(); this.pool("tutorials"); }
   this(Json newJson) {
@@ -16,14 +10,16 @@ class DCMSTutorial : DCMSPost {
   }
 
   static string namespace = moduleName!DCMSTutorial;
-  override string entityPath() { return moduleName!DCMSTutorial; }
+  override string entityPath() { return "cms/tutorial"; }
   override string entityClass() { return "cmsTutorial"; }
   override string entityClasses() { return "cmsTutorials"; }  
 
   mixin(SProperty!("UUID", "tutorial"));
 
-  override void fromJson(Json aJson) {
-    if (aJson == Json(null)) return;
+  override DOOPEntity newEntity() { return CMSTutorial; }
+
+  override DOOPEntity fromJson(Json aJson) {
+    if (aJson == Json(null)) return this;
     super.fromJson(aJson);
     
     foreach (keyvalue; aJson.byKeyValue) {
@@ -34,6 +30,7 @@ class DCMSTutorial : DCMSPost {
         default: break;
       }      
     }
+    return this;
   }
 
   override Json toJson(string[] showFields = null, string[] hideFields = null) {    

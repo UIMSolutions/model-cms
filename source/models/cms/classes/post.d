@@ -4,99 +4,164 @@ module models.cms.classes.post;
 import models.cms;
 
 class DCMSPost : DCMSEntity {
-  this() { super(); }
-  this(Json newJson) { super(newJson); }
+  this() { super();
+    this
+    .attribute("keywords", OOPAttributeTags) 
+    .attribute("link", OOPAttributeString)
+    .attribute("isPrivate", OOPAttributeBoolean) 
+    .attribute("themeId", OOPAttributeUUID); 
+    }
+  this(Json newJson) { this();
+    this.fromJson(newJson); }
 
   static string namespace = moduleName!DCMSPost;
   override string entityPath() { return moduleName!DCMSPost; }
   override string entityClass() { return "cmsPost"; }
   override string entityClasses() { return "cmsPosts"; }  
 
-  mixin(SProperty!("string[]", "keywords"));
-  O keywords(this O)(string values) {
-    _keywords = split("#").map!(a => a.strip).join(",").split(",").map!(a => a.strip).array;
-    return cast(O)this;
-  }
-  mixin(SProperty!("string", "link"));
+  mixin(OProperty!("DCMSTheme", "theme"));
 
-  mixin(SProperty!("bool", "isPrivate"));
-  O isPrivate(this O)(string newValue) {
-    this.isPrivate(newValue == "true");
-    return cast(O)this;
+  string[] keywords() { 
+    if (auto attribute = cast(DOOPAttributeTags)attributes["keywords"]) {
+      return attribute.value; } 
+    return null;
   }
-  
-  mixin(SProperty!("UUID", "theme"));
-  O theme(this O)(string anUuid) { 
-    this.theme(UUID(anUuid)); 
+
+  O keywords(this O)(string[] values) { 
+    if (auto attribute = cast(DOOPAttributeTags)attributes["keywords"]) {
+      attribute.value(values); } 
     return cast(O)this;
   }
 
-  override string opIndex(string key) {
-    switch(key) {
-      case "keywords": return this.keywords.join(","); 
-      case "isPrivate": return this.isPrivate ? "true" : "false"; 
-      case "theme": return this.theme.toString;
-      case "link": return this.link;
-      default: return super.opIndex(key);
-    }      
-  }
-
-  // Read HTML value and set entity value
-  override void opIndexAssign(string value, string key) {
-    switch(key) {
-      case "keywords": this.keywords(value); break;
-      case "isPrivate": this.isPrivate(value); break;
-      case "theme": this.theme(value); break;
-      case "link": this.link(value); break;
-      default: super.opIndexAssign(value, key); break;
-    }      
-  }
-
-  override void fromRequest(STRINGAA parameters) {
+  override DOOPEntity fromRequest(STRINGAA parameters) {
     super.fromRequest(parameters);
     foreach(k, v; [
       "entity_keywords":"keywords", 
       "entity_isprivate":"isPrivate", 
-      "entity_theme":"theme"]) {
+      "entity_theme":"themeId"]) {
       if (k in parameters) this[v] = parameters[k];
     }
+    return this;
   }
 
-  override void fromJson(Json aJson) {
-    if (aJson == Json(null)) return;
+  override DOOPEntity fromJson(Json aJson) {
+    if (aJson == Json(null)) return this;
     super.fromJson(aJson);
     
     foreach (keyvalue; aJson.byKeyValue) {
       auto k = keyvalue.key;
       auto v = keyvalue.value;
       switch(k) {
-        case "theme": this.theme(UUID(v.get!string)); break;
-        case "keywords":
-          if (v == Json.string) this.keywords(v.get!string); 
-          else this.keywords(v.get!string[]); break;
-        case "isPrivate": this.isPrivate(v.get!bool); break;
+        case "theme": this["themeId"] = v.get!string; break;
         default: break;
       }      
     }
-  }
- 
-  override Json toJson(string[] showFields = null, string[] hideFields = null) {    
-    auto result = super.toJson(showFields, hideFields);
-    
-    if (showFields.length == 0) {
-      if (!hideFields.exist("theme")) result["theme"] = this.theme.toString;
-      if (!hideFields.exist("keywords")) result["keywords"] = this.keywords.toJson;
-      if (!hideFields.exist("isPrivate")) result["isPrivate"] = this.isPrivate;
-    }
-    else {
-      if ((showFields.exist("theme")) && (!hideFields.exist("theme"))) result["theme"] = this.theme.toString;
-      if ((showFields.exist("keywords")) && (!hideFields.exist("keywords"))) result["keywords"] = this.keywords.toJson;
-      if ((showFields.exist("isPrivate")) && (!hideFields.exist("isPrivate"))) result["isPrivate"] = this.isPrivate;
-    }
-    
-    return result;
+    return this;
   }
 }
 auto CMSPost() { return new DCMSPost; }
 auto CMSPost(Json json) { return new DCMSPost(json); }
 
+unittest { // Test attribute "isPrivate"
+  version(model_cms) {
+    auto entity = CMSPost;
+    entity["isPrivate"] = "true";
+    assert(entity["isPrivate"] == "true"); 
+    
+    entity["isPrivate"] = "false";
+    assert(entity["isPrivate"] == "false"); 
+
+    auto json = Json.emptyObject;
+    json["isPrivate"] = false;
+    writeln(json);
+    entity.fromJson(json);
+    assert(entity["isPrivate"] == "false"); 
+
+    json["isPrivate"] = true;
+    writeln(json);
+    entity.fromJson(json);
+    assert(entity["isPrivate"] == "true"); 
+
+    assert("isPrivate" in entity.toJson);
+    assert(entity.toJson["isPrivate"].get!bool);
+    entity["isPrivate"] = "false"; 
+    assert(!entity.toJson["isPrivate"].get!bool);
+   }
+}
+
+unittest {  // Test attribute "keywords"
+  version(model_cms) {
+    auto entity = CMSPost;
+    entity["keywords"] = "one,two,three";
+    assert(entity["keywords"] == "one,two,three"); 
+    
+    entity["keywords"] = "one, three";
+    assert(entity["keywords"] == "one,three"); 
+
+    entity["keywords"] = "one,two #three";
+    debug writeln(entity["keywords"]); 
+    assert(entity["keywords"] == "one,two,three"); 
+    
+    entity["keywords"] = ",one,three";
+    assert(entity["keywords"] == "one,three"); 
+
+    auto json = Json.emptyObject;
+    auto tags = Json.emptyArray;
+    tags ~= "one";
+    tags ~= "two";
+    tags ~= "three";
+    json["keywords"] = tags;
+    entity.fromJson(json);
+    assert(entity["keywords"] == "one,two,three"); 
+  }
+}
+
+unittest { // Test attribute "link"
+  version(model_cms) {
+    auto entity = CMSPost;
+    entity["link"] = "something";
+    assert(entity["link"] == "something"); 
+    
+    entity["link"] = "nothing";
+    assert(entity["link"] == "nothing"); 
+
+    auto json = Json.emptyObject;
+    json["link"] = "nothing";
+    writeln(json);
+    entity.fromJson(json);
+    assert(entity["link"] == "nothing"); 
+
+    json["link"] = "something";
+    entity.fromJson(json);
+    assert(entity["link"] == "something"); 
+
+    assert("link" in entity.toJson);
+    assert(entity.toJson["link"].get!string == "something");
+  }
+}
+
+unittest { // Test attribute "theme"
+  version(model_cms) {
+    auto entity = CMSPost;
+
+    // TODO Add Test
+/*  entity["theme"] = "something";
+    assert(entity["theme"] == "something"); 
+    
+    entity["theme"] = "nothing";
+    assert(entity["theme"] == "nothing"); 
+
+    auto json = Json.emptyObject;
+    json["theme"] = "nothing";
+    writeln(json);
+    entity.fromJson(json);
+    assert(entity["theme"] == "nothing"); 
+
+    json["theme"] = "something";
+    entity.fromJson(json);
+    assert(entity["theme"] == "something"); 
+
+    assert("theme" in entity.toJson);
+    assert(entity.toJson["theme"].get!string == "something"); */
+  }
+}

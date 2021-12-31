@@ -3,25 +3,27 @@ module models.cms.entities.blog;
 @safe:
 import models.cms;
 
-static this() {
-  createEntities[DCMSBlog.namespace] = (Json json) => CMSBlog(json); 
-  createEntities["cmsBlog"] = (Json json) => CMSBlog(json); 
-  createEntities["blog"] = (Json json) => CMSBlog(json); 
-}
-
 class DCMSBlog : DCMSPost {
   this() { super(); this.pool("blogs"); }
   this(Json newJson) {
       this(); this.fromJson(newJson); }
 
   static string namespace = moduleName!DCMSBlog;
-  override string entityPath() { return moduleName!DCMSBlog; }
+  override string entityPath() { return "cms/blog"; }
   override string entityClass() { return "cmsBlog"; }
   override string entityClasses() { return "cmsBlogs"; }  
+  
+  // This blog ist linked to blog
   mixin(SProperty!("UUID", "blog"));
+  unittest {
+    version(model_cms) {
+      // TOD Add Tests
+    }}
 
-  override void fromJson(Json aJson) {
-    if (aJson == Json(null)) return;
+  override DOOPEntity newEntity() { return CMSBlog; }
+
+  override DOOPEntity fromJson(Json aJson) {
+    if (aJson == Json(null)) return this;
     super.fromJson(aJson);
     
       foreach (keyvalue; aJson.byKeyValue) {
@@ -32,9 +34,14 @@ class DCMSBlog : DCMSPost {
         default: break;
       }      
     } 
-  }
+    return this; }
+  unittest {
+    version(model_cms) {
+      // TOD Add Tests
+    }}
 
   override Json toJson(string[] showFields = null, string[] hideFields = null) {    
+    // debug writeln(moduleName!DCMSBlog~":DCMSBlog::toJson");    
     auto result = super.toJson(showFields, hideFields);
     
     if (showFields.length == 0) {
@@ -44,8 +51,11 @@ class DCMSBlog : DCMSPost {
       if ((showFields.exist("blog")) && (!hideFields.exist("blog"))) result["blog"] = this.blog.toString;
     }
     
-    return result;
-  }
+    return result; }
+  unittest {
+    version(model_cms) {
+      // TOD Add Tests
+    }}
 }
 auto CMSBlog() { return new DCMSBlog; }
 auto CMSBlog(Json json) { return new DCMSBlog(json); }

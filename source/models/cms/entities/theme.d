@@ -3,12 +3,6 @@ module models.cms.entities.theme;
 @safe:
 import models.cms;
 
-static this() {
-  createEntities[DCMSTheme.namespace] = (Json json) => CMSTheme(json); 
-  createEntities["cmsTheme"] = (Json json) => CMSTheme(json); 
-  createEntities["theme"] = (Json json) => CMSTheme(json); 
-}
-
 class DCMSTheme : DCMSEntity {
   this() { super(); this.pool("themes"); }
   this(Json newJson) {
@@ -16,12 +10,14 @@ class DCMSTheme : DCMSEntity {
   }
 
   static string namespace = moduleName!DCMSTheme;
-  override string entityPath() { return moduleName!DCMSTheme; }
+  override string entityPath() { return "cms/theme"; }
   override string entityClass() { return "cmsTheme"; }
   override string entityClasses() { return "cmsThemes"; }  
  
-  override void fromJson(Json aJson) {
-    if (aJson == Json(null)) return;
+  override DOOPEntity newEntity() { return CMSTheme; }
+
+  override DOOPEntity fromJson(Json aJson) {
+    if (aJson == Json(null)) return this;
     super.fromJson(aJson);
     
     /* foreach (keyvalue; aJson.byKeyValue) {
@@ -34,6 +30,7 @@ class DCMSTheme : DCMSEntity {
         default: break;
       }      
     } */
+    return this;
   }
 
   override Json toJson(string[] showFields = null, string[] hideFields = null) {    

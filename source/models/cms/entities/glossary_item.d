@@ -3,12 +3,6 @@ module models.cms.entities.glossary_item;
 @safe:
 import models.cms;
 
-static this() {
-  createEntities[DCMSGlossaryItem.namespace] = (Json json) => CMSGlossaryItem(json); 
-  createEntities["cmsGlossaryItem"] = (Json json) => CMSGlossaryItem(json); 
-  createEntities["glossaryItem"] = (Json json) => CMSGlossaryItem(json); 
-}
-
 class DCMSGlossaryItem : DCMSPost {
     this() { super(); this.pool("glossary_items"); }
     this(Json newJson) {
@@ -16,14 +10,16 @@ class DCMSGlossaryItem : DCMSPost {
     }
 
   static string namespace = moduleName!DCMSGlossaryItem;
-  override string entityPath() { return moduleName!DCMSGlossaryItem; }
+  override string entityPath() { return "cms/glossaryitem"; }
   override string entityClass() { return "cmsGlossaryItem"; }
   override string entityClasses() { return "cmsGlossaryItems"; }  
     
 //    mixin(SProperty!("UUID", "glossary_item"));
 
-    override void fromJson(Json aJson) {
-    if (aJson == Json(null)) return;
+  override DOOPEntity newEntity() { return CMSGlossaryItem; }
+  
+  override DOOPEntity fromJson(Json aJson) {
+    if (aJson == Json(null)) return this;
     super.fromJson(aJson);
     
     foreach (keyvalue; aJson.byKeyValue) {
@@ -34,6 +30,7 @@ class DCMSGlossaryItem : DCMSPost {
         default: break;
       }      
     }
+    return this;
   }
 
   override Json toJson(string[] showFields = null, string[] hideFields = null) {    

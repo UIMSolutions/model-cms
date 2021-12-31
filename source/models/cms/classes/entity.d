@@ -4,52 +4,28 @@ module models.cms.classes.entity;
 import models.cms;
 
 class DCMSEntity : DOOPEntity {
-  this() { super(); this.isIndex(false); }
+  this() { super();
+    this
+    .attribute("imagePath", OOPAttributeString)
+    .attribute("mainTitle", OOPAttributeString)
+    .attribute("subTitle", OOPAttributeString)
+    .attribute("summary", OOPAttributeString)
+    .attribute("text", OOPAttributeString)
+    .attribute("isIndex", OOPAttributeBoolean); 
+ 
+    this["isIndex"] = "nothing"; }
   this(Json newJson) {
       this(); this.fromJson(newJson);
   }
 
-  mixin(SProperty!("string", "image"));
-  mixin(SProperty!("bool", "isIndex"));
-  O isIndex(this O)(string newValue) {
-    this.isIndex(newValue == "true");
-    return cast(O)this;
-  }
+  override string entityClass() { return "cmsEntity"; }
+  override string entityClasses() { return "cmsEntities"; }
+  override string entityPath() { return "cmsEntities"; }
 
-  mixin(SProperty!("string", "mainTitle"));
-  mixin(SProperty!("string", "subTitle"));
-  mixin(SProperty!("string", "summary"));
-  mixin(SProperty!("string", "text"));
-
-  override string opIndex(string key) {
-    switch(key) {
-      case "image": return this.image; 
-      case "isIndex": return this.isIndex ? "true" : "false"; 
-      case "mainTitle": return this.mainTitle;
-      case "subTitle": return this.subTitle;
-      case "summary": return this.summary;
-      case "text": return this.text;
-      default: return super.opIndex(key);
-    }      
-  }
-
-  // Read HTML value and set entity value
-  override void opIndexAssign(string value, string key) {
-    switch(key) {
-      case "image": this.image(value); break;
-      case "isIndex": this.isIndex(value); break;
-      case "mainTitle": this.mainTitle(value); break;
-      case "subTitle": this.subTitle(value); break;
-      case "summary": this.summary(value); break;
-      case "text": this.text(value); break;
-      default: super.opIndexAssign(value, key); break;
-    }      
-  }
-
-  override void fromRequest(STRINGAA parameters) {
+  override DOOPEntity fromRequest(STRINGAA parameters) {
     super.fromRequest(parameters);
     foreach(k, v; [
-      "entity_image":"image", 
+      "entity_imagepath":"imagePath", 
       "entity_isindex":"isIndex", 
       "entity_maintitle":"mainTitle", 
       "entity_subtitle":"subTitle", 
@@ -57,49 +33,155 @@ class DCMSEntity : DOOPEntity {
       "entity_text":"text"]) {
       if (k in parameters) this[v] = parameters[k];
     }
+    return this;
   }
-
-  override void fromJson(Json aJson) {
-    if (aJson == Json(null)) return;
-    super.fromJson(aJson);
-    
-    foreach (keyvalue; aJson.byKeyValue) {
-      auto k = keyvalue.key;
-      auto v = keyvalue.value;
-      switch(k) {
-        case "summary": this.summary(v.get!string); break;
-        case "text": this.text(v.get!string); break;
-        case "mainTitle": this.mainTitle(v.get!string); break;
-        case "subTitle": this.subTitle(v.get!string); break;
-        case "image": this.image(v.get!string); break;
-        case "isIndex": this.isIndex(v.get!bool); break;
-        default: break;
-      }      
-    }
-  }
-
-  override Json toJson(string[] showFields = null, string[] hideFields = null) {    
-    auto result = super.toJson(showFields, hideFields);
-    
-    if (showFields.length == 0) {
-      if (!hideFields.exist("summary")) result["summary"] = this.summary;
-      if (!hideFields.exist("text")) result["text"] = this.text;
-      if (!hideFields.exist("image")) result["image"] = this.image;
-      if (!hideFields.exist("mainTitle")) result["mainTitle"] = this.mainTitle;
-      if (!hideFields.exist("subTitle")) result["subTitle"] = this.subTitle;
-      if (!hideFields.exist("isIndex")) result["isIndex"] = this.isIndex;
-    }
-    else {
-      if ((showFields.exist("summary")) && (!hideFields.exist("summary"))) result["summary"] = this.summary;
-      if ((showFields.exist("text")) && (!hideFields.exist("text"))) result["text"] = this.text;
-      if ((showFields.exist("image")) && (!hideFields.exist("image"))) result["image"] = this.image;
-      if ((showFields.exist("mainTitle")) && (!hideFields.exist("mainTitle"))) result["mainTitle"] = this.mainTitle;
-      if ((showFields.exist("subTitle")) && (!hideFields.exist("subTitle"))) result["subTitle"] = this.subTitle;
-      if ((showFields.exist("isIndex")) && (!hideFields.exist("isIndex"))) result["isIndex"] = this.isIndex;
-    }
-    
-    return result;
-  }
+  unittest {
+    version(model_cms) {
+      // TOD Add Tests
+    }}
 }
 auto CMSEntity() { return new DCMSEntity; }
 auto CMSEntity(Json json) { return new DCMSEntity(json); }
+
+unittest { // Test attribute "imagePath"
+  version(model_cms) {
+    auto entity = CMSPost;
+    entity["imagePath"] = "something";
+    assert(entity["imagePath"] == "something"); 
+    
+    entity["imagePath"] = "nothing";
+    assert(entity["imagePath"] == "nothing"); 
+
+    auto json = Json.emptyObject;
+    json["imagePath"] = "nothing";
+    writeln(json);
+    entity.fromJson(json);
+    assert(entity["imagePath"] == "nothing"); 
+
+    json["imagePath"] = "something";
+    entity.fromJson(json);
+    assert(entity["imagePath"] == "something"); 
+
+    assert("imagePath" in entity.toJson);
+    assert(entity.toJson["imagePath"].get!string == "something");
+  }
+}
+
+unittest { // Test attribute "isIndex"
+  version(model_cms) {
+    auto entity = CMSPost;
+    entity["isIndex"] = "true";
+    assert(entity["isIndex"] == "true"); 
+    
+    entity["isIndex"] = "false";
+    assert(entity["isIndex"] == "false"); 
+
+    auto json = Json.emptyObject;
+    json["isIndex"] = false;
+    writeln(json);
+    entity.fromJson(json);
+    assert(entity["isIndex"] == "false"); 
+
+    json["isIndex"] = true;
+    entity.fromJson(json);
+    assert(entity["isIndex"] == "true"); 
+
+    assert("isIndex" in entity.toJson);
+    assert(entity.toJson["isIndex"].get!bool == true);
+    }}
+
+unittest { // Test attribute "maintitle"
+  version(model_cms) {
+    auto entity = CMSPost;
+    entity["mainTitle"] = "something";
+    assert(entity["mainTitle"] == "something"); 
+    
+    entity["mainTitle"] = "nothing";
+    assert(entity["mainTitle"] == "nothing"); 
+
+    auto json = Json.emptyObject;
+    json["mainTitle"] = "nothing";
+    writeln(json);
+    entity.fromJson(json);
+    assert(entity["mainTitle"] == "nothing"); 
+
+    json["mainTitle"] = "something";
+    entity.fromJson(json);
+    assert(entity["mainTitle"] == "something"); 
+
+    assert("mainTitle" in entity.toJson);
+    assert(entity.toJson["mainTitle"].get!string == "something");
+  }
+}
+
+unittest { // Test attribute "subTitle"
+  version(model_cms) {
+    auto entity = CMSPost;
+    entity["subTitle"] = "something";
+    assert(entity["subTitle"] == "something"); 
+    
+    entity["subTitle"] = "nothing";
+    assert(entity["subTitle"] == "nothing"); 
+
+    auto json = Json.emptyObject;
+    json["subTitle"] = "nothing";
+    writeln(json);
+    entity.fromJson(json);
+    assert(entity["subTitle"] == "nothing"); 
+
+    json["subTitle"] = "something";
+    entity.fromJson(json);
+    assert(entity["subTitle"] == "something"); 
+
+    assert("subTitle" in entity.toJson);
+    assert(entity.toJson["subTitle"].get!string == "something");
+  }
+}
+
+unittest { // Test attribute "summary"
+  version(model_cms) {
+    auto entity = CMSPost;
+    entity["summary"] = "something";
+    assert(entity["summary"] == "something"); 
+    
+    entity["summary"] = "nothing";
+    assert(entity["summary"] == "nothing"); 
+
+    auto json = Json.emptyObject;
+    json["summary"] = "nothing";
+    writeln(json);
+    entity.fromJson(json);
+    assert(entity["summary"] == "nothing"); 
+
+    json["summary"] = "something";
+    entity.fromJson(json);
+    assert(entity["summary"] == "something"); 
+
+    assert("summary" in entity.toJson);
+    assert(entity.toJson["summary"].get!string == "something");
+  }
+}
+
+unittest { // Test attribute "text"
+  version(model_cms) {
+    auto entity = CMSPost;
+    entity["text"] = "something";
+    assert(entity["text"] == "something"); 
+    
+    entity["text"] = "nothing";
+    assert(entity["text"] == "nothing"); 
+
+    auto json = Json.emptyObject;
+    json["text"] = "nothing";
+    writeln(json);
+    entity.fromJson(json);
+    assert(entity["text"] == "nothing"); 
+
+    json["text"] = "something";
+    entity.fromJson(json);
+    assert(entity["text"] == "something"); 
+
+    assert("text" in entity.toJson);
+    assert(entity.toJson["text"].get!string == "something");
+  }
+}

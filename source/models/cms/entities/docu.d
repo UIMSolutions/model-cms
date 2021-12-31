@@ -3,51 +3,48 @@ module models.cms.entities.docu;
 @safe:
 import models.cms;
 
-static this() {
-  createEntities[DCMSDocu.namespace] = (Json json) => CMSDocu(json); 
-  createEntities["cmsDocu"] = (Json json) => CMSDocu(json); 
-  createEntities["docu"] = (Json json) => CMSDocu(json); 
-}
-
 class DCMSDocu : DCMSPost {
-  this() { super(); this.pool("docus"); }
-    this(Json newJson) {
-        this(); this.fromJson(newJson);
-    }
+  this() { super(); 
+    this
+    .pool("docus")
+    .attribute("docu", OOPAttributeUUID); }
+
+  this(Json newJson) {
+    this(); 
+    this.fromJson(newJson); }
+
+  override DOOPEntity newEntity() { return CMSDocu; }
 
   static string namespace = moduleName!DCMSDocu;
-  override string entityPath() { return moduleName!DCMSDocu; }
+  override string entityPath() { return "cms/docu"; }
   override string entityClass() { return "cmsDocu"; }
   override string entityClasses() { return "cmsDocus"; }  
-    
-   mixin(SProperty!("UUID", "docu"));
-
-  override void fromJson(Json aJson) {
-    if (aJson == Json(null)) return;
-    super.fromJson(aJson);
-    
-    foreach (keyvalue; aJson.byKeyValue) {
-      auto k = keyvalue.key;
-      auto v = keyvalue.value;
-      switch(k) {
-        case "docu": this.docu(UUID(v.get!string)); break;
-        default: break;
-      }      
-    }
-  }
-
-  override Json toJson(string[] showFields = null, string[] hideFields = null) {    
-    auto result = super.toJson(showFields, hideFields);
-    
-    if (showFields.length == 0) {
-      if (!hideFields.exist("docu")) result["docu"] = this.docu.toString;
-    }
-    else {
-      if ((showFields.exist("docu")) && (!hideFields.exist("docu"))) result["docu"] = this.theme.toString;
-    }
-    
-    return result;
-  }
 }
 auto CMSDocu() { return new DCMSDocu; }
 auto CMSDocu(Json json) { return new DCMSDocu(json); }
+
+unittest { // Test attribute "docu"
+  version(model_cms) {
+    auto entity = CMSPost;
+
+    // TOD Add Test
+/*     entity["docu"] = "something";
+    assert(entity["docu"] == "something"); 
+    
+    entity["docu"] = "nothing";
+    assert(entity["docu"] == "nothing"); 
+
+    auto json = Json.emptyObject;
+    json["docu"] = "nothing";
+    writeln(json);
+    entity.fromJson(json);
+    assert(entity["docu"] == "nothing"); 
+
+    json["docu"] = "something";
+    entity.fromJson(json);
+    assert(entity["docu"] == "something"); 
+
+    assert("docu" in entity.toJson);
+    assert(entity.toJson["docu"].get!string == "something"); */
+  }
+}

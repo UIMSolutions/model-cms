@@ -13,3 +13,6 @@ model-cms-test-*
 *.o
 *.obj
 *.lst
+dub.selections.json
+libmodel-cms.a
+dub.selections.json
