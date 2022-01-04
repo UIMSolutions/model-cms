@@ -5,10 +5,7 @@ import models.cms;
 
 
 class DCMSNewsItem : DCMSPost {
-  this() { super(); this.pool("news"); }
-    this(Json newJson) {
-        this(); this.fromJson(newJson);
-  }
+  mixin(EntityThis!("CMSNewsItem"));
 
   static string namespace = moduleName!DCMSNewsItem;
   override string entityPath() { return "cms/news"; }
@@ -18,7 +15,7 @@ class DCMSNewsItem : DCMSPost {
     
   mixin(SProperty!("UUID", "news"));
 
-  override DOOPEntity newEntity() { return CMSNewsItem; }
+  override DOOPEntity clone() { return CMSNewsItem; }
 
   override DOOPEntity fromJson(Json aJson) {
     if (aJson == Json(null)) return this;
@@ -48,7 +45,7 @@ class DCMSNewsItem : DCMSPost {
     return result;
   }
 }
-auto CMSNewsItem() { return new DCMSNewsItem; }
-auto CMSNewsItem(Json json) { return new DCMSNewsItem(json); }
+mixin(EntityCalls!("CMSNewsItem"));
+
 
 

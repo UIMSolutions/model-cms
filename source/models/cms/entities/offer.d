@@ -4,15 +4,13 @@ module models.cms.entities.offer;
 import models.cms;
 
 class DCMSOffer : DCMSPost {
-  this() { super(); 
-    this
-    .pool("offers")
-    .attribute("offer", OOPAttributeUUID); }
+  mixin(EntityThis!("CMSOffer"));
 
-  this(Json newJson) {
-    this(); 
+  override void initialize() {
+    super.initialize;
+
     this
-    .fromJson(newJson);
+    .attribute("offer", OOPAttributeUUID); 
   }
 
   static string namespace = moduleName!DCMSOffer;
@@ -20,7 +18,6 @@ class DCMSOffer : DCMSPost {
   override string entityClass() { return "cmsOffer"; }
   override string entityClasses() { return "cmsOffer"; }  
 
-  override DOOPEntity newEntity() { return CMSOffer; }
+  override DOOPEntity clone() { return CMSOffer; }
 }
-auto CMSOffer() { return new DCMSOffer; }
-auto CMSOffer(Json json) { return new DCMSOffer(json); }
+mixin(EntityCalls!("CMSOffer"));

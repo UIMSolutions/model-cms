@@ -4,10 +4,7 @@ module models.cms.entities.demo;
 import models.cms;
 
 class DCMSDemo : DCMSPost {
-  this() { super(); this.pool("demos"); }
-  this(Json newJson) {
-      this(); this.fromJson(newJson);
-  }
+  mixin(EntityThis!("CMSDemo"));
 
   static string namespace = moduleName!DCMSDemo;
   override string entityPath() { return "cms/demo"; }
@@ -16,7 +13,7 @@ class DCMSDemo : DCMSPost {
   
   mixin(SProperty!("UUID", "demo"));
 
-  override DOOPEntity newEntity() { return CMSDemo; }
+  override DOOPEntity clone() { return CMSDemo; }
   
   override DOOPEntity fromJson(Json aJson) {
     if (aJson == Json(null)) return this;
@@ -46,6 +43,6 @@ class DCMSDemo : DCMSPost {
     return result;
   }
 }
-auto CMSDemo() { return new DCMSDemo; }
-auto CMSDemo(Json json) { return new DCMSDemo(json); }
+mixin(EntityCalls!("CMSDemo"));
+
 

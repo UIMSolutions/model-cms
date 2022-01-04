@@ -4,17 +4,14 @@ module models.cms.entities.theme;
 import models.cms;
 
 class DCMSTheme : DCMSEntity {
-  this() { super(); this.pool("themes"); }
-  this(Json newJson) {
-      this(); this.fromJson(newJson);
-  }
+  mixin(EntityThis!("CMSTheme"));
 
   static string namespace = moduleName!DCMSTheme;
   override string entityPath() { return "cms/theme"; }
   override string entityClass() { return "cmsTheme"; }
   override string entityClasses() { return "cmsThemes"; }  
  
-  override DOOPEntity newEntity() { return CMSTheme; }
+  override DOOPEntity clone() { return CMSTheme; }
 
   override DOOPEntity fromJson(Json aJson) {
     if (aJson == Json(null)) return this;
@@ -50,5 +47,4 @@ class DCMSTheme : DCMSEntity {
     return result;
   }
 }
-auto CMSTheme() { return new DCMSTheme; }
-auto CMSTheme(Json json) { return new DCMSTheme(json); }
+mixin(EntityCalls!("CMSTheme"));

@@ -4,9 +4,7 @@ module models.cms.entities.blog;
 import models.cms;
 
 class DCMSBlog : DCMSPost {
-  this() { super(); this.pool("blogs"); }
-  this(Json newJson) {
-      this(); this.fromJson(newJson); }
+  mixin(EntityThis!("CMSBlog"));
 
   static string namespace = moduleName!DCMSBlog;
   override string entityPath() { return "cms/blog"; }
@@ -16,11 +14,11 @@ class DCMSBlog : DCMSPost {
   // This blog ist linked to blog
   mixin(SProperty!("UUID", "blog"));
   unittest {
-    version(model_cms) {
+    version(test_model_cms) {
       // TOD Add Tests
     }}
 
-  override DOOPEntity newEntity() { return CMSBlog; }
+  override DOOPEntity clone() { return CMSBlog; }
 
   override DOOPEntity fromJson(Json aJson) {
     if (aJson == Json(null)) return this;
@@ -36,7 +34,7 @@ class DCMSBlog : DCMSPost {
     } 
     return this; }
   unittest {
-    version(model_cms) {
+    version(test_model_cms) {
       // TOD Add Tests
     }}
 
@@ -53,10 +51,9 @@ class DCMSBlog : DCMSPost {
     
     return result; }
   unittest {
-    version(model_cms) {
+    version(test_model_cms) {
       // TOD Add Tests
     }}
 }
-auto CMSBlog() { return new DCMSBlog; }
-auto CMSBlog(Json json) { return new DCMSBlog(json); }
+mixin(EntityCalls!("CMSBlog"));
 

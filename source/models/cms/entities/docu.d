@@ -4,27 +4,27 @@ module models.cms.entities.docu;
 import models.cms;
 
 class DCMSDocu : DCMSPost {
-  this() { super(); 
+  mixin(EntityThis!("CMSDocu"));
+
+  override void initialize() {
+    super.initialize;
+    
     this
-    .pool("docus")
-    .attribute("docu", OOPAttributeUUID); }
+    .attribute("docu", OOPAttributeUUID); 
+  }
 
-  this(Json newJson) {
-    this(); 
-    this.fromJson(newJson); }
-
-  override DOOPEntity newEntity() { return CMSDocu; }
+  override DOOPEntity clone() { return CMSDocu; }
 
   static string namespace = moduleName!DCMSDocu;
   override string entityPath() { return "cms/docu"; }
   override string entityClass() { return "cmsDocu"; }
   override string entityClasses() { return "cmsDocus"; }  
 }
-auto CMSDocu() { return new DCMSDocu; }
-auto CMSDocu(Json json) { return new DCMSDocu(json); }
+mixin(EntityCalls!("CMSDocu"));
+
 
 unittest { // Test attribute "docu"
-  version(model_cms) {
+  version(test_model_cms) {
     auto entity = CMSPost;
 
     // TOD Add Test

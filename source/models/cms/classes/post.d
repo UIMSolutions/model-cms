@@ -4,15 +4,17 @@ module models.cms.classes.post;
 import models.cms;
 
 class DCMSPost : DCMSEntity {
-  this() { super();
+  mixin(EntityThis!("CMSPost"));
+
+  override void initialize() {
+    super.initialize;
+
     this
     .attribute("keywords", OOPAttributeTags) 
     .attribute("link", OOPAttributeString)
     .attribute("isPrivate", OOPAttributeBoolean) 
     .attribute("themeId", OOPAttributeUUID); 
-    }
-  this(Json newJson) { this();
-    this.fromJson(newJson); }
+  }
 
   static string namespace = moduleName!DCMSPost;
   override string entityPath() { return moduleName!DCMSPost; }
@@ -59,11 +61,10 @@ class DCMSPost : DCMSEntity {
     return this;
   }
 }
-auto CMSPost() { return new DCMSPost; }
-auto CMSPost(Json json) { return new DCMSPost(json); }
+mixin(EntityCalls!("CMSPost"));
 
 unittest { // Test attribute "isPrivate"
-  version(model_cms) {
+  version(test_model_cms) {
     auto entity = CMSPost;
     entity["isPrivate"] = "true";
     assert(entity["isPrivate"] == "true"); 
@@ -90,7 +91,7 @@ unittest { // Test attribute "isPrivate"
 }
 
 unittest {  // Test attribute "keywords"
-  version(model_cms) {
+  version(test_model_cms) {
     auto entity = CMSPost;
     entity["keywords"] = "one,two,three";
     assert(entity["keywords"] == "one,two,three"); 
@@ -117,7 +118,7 @@ unittest {  // Test attribute "keywords"
 }
 
 unittest { // Test attribute "link"
-  version(model_cms) {
+  version(test_model_cms) {
     auto entity = CMSPost;
     entity["link"] = "something";
     assert(entity["link"] == "something"); 
@@ -141,7 +142,7 @@ unittest { // Test attribute "link"
 }
 
 unittest { // Test attribute "theme"
-  version(model_cms) {
+  version(test_model_cms) {
     auto entity = CMSPost;
 
     // TODO Add Test

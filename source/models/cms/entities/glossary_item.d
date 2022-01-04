@@ -4,10 +4,7 @@ module models.cms.entities.glossary_item;
 import models.cms;
 
 class DCMSGlossaryItem : DCMSPost {
-    this() { super(); this.pool("glossary_items"); }
-    this(Json newJson) {
-        this(); this.fromJson(newJson);
-    }
+  mixin(EntityThis!("CMSGlossaryItem"));
 
   static string namespace = moduleName!DCMSGlossaryItem;
   override string entityPath() { return "cms/glossaryitem"; }
@@ -16,7 +13,7 @@ class DCMSGlossaryItem : DCMSPost {
     
 //    mixin(SProperty!("UUID", "glossary_item"));
 
-  override DOOPEntity newEntity() { return CMSGlossaryItem; }
+  override DOOPEntity clone() { return CMSGlossaryItem; }
   
   override DOOPEntity fromJson(Json aJson) {
     if (aJson == Json(null)) return this;
@@ -46,5 +43,5 @@ class DCMSGlossaryItem : DCMSPost {
     return result;
   }
 }
-auto CMSGlossaryItem() { return new DCMSGlossaryItem; }
-auto CMSGlossaryItem(Json json) { return new DCMSGlossaryItem(json); }
+mixin(EntityCalls!("CMSGlossaryItem"));
+

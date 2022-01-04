@@ -36,7 +36,7 @@ class DCMSEntity : DOOPEntity {
     return this;
   }
   unittest {
-    version(model_cms) {
+    version(test_model_cms) {
       // TOD Add Tests
     }}
 }
@@ -44,7 +44,7 @@ auto CMSEntity() { return new DCMSEntity; }
 auto CMSEntity(Json json) { return new DCMSEntity(json); }
 
 unittest { // Test attribute "imagePath"
-  version(model_cms) {
+  version(test_model_cms) {
     auto entity = CMSPost;
     entity["imagePath"] = "something";
     assert(entity["imagePath"] == "something"); 
@@ -68,7 +68,7 @@ unittest { // Test attribute "imagePath"
 }
 
 unittest { // Test attribute "isIndex"
-  version(model_cms) {
+  version(test_model_cms) {
     auto entity = CMSPost;
     entity["isIndex"] = "true";
     assert(entity["isIndex"] == "true"); 
@@ -91,7 +91,7 @@ unittest { // Test attribute "isIndex"
     }}
 
 unittest { // Test attribute "maintitle"
-  version(model_cms) {
+  version(test_model_cms) {
     auto entity = CMSPost;
     entity["mainTitle"] = "something";
     assert(entity["mainTitle"] == "something"); 
@@ -115,7 +115,7 @@ unittest { // Test attribute "maintitle"
 }
 
 unittest { // Test attribute "subTitle"
-  version(model_cms) {
+  version(test_model_cms) {
     auto entity = CMSPost;
     entity["subTitle"] = "something";
     assert(entity["subTitle"] == "something"); 
@@ -139,7 +139,7 @@ unittest { // Test attribute "subTitle"
 }
 
 unittest { // Test attribute "summary"
-  version(model_cms) {
+  version(test_model_cms) {
     auto entity = CMSPost;
     entity["summary"] = "something";
     assert(entity["summary"] == "something"); 
@@ -163,7 +163,7 @@ unittest { // Test attribute "summary"
 }
 
 unittest { // Test attribute "text"
-  version(model_cms) {
+  version(test_model_cms) {
     auto entity = CMSPost;
     entity["text"] = "something";
     assert(entity["text"] == "something"); 

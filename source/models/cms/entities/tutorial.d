@@ -4,10 +4,7 @@ module models.cms.entities.tutorial;
 import models.cms;
 
 class DCMSTutorial : DCMSPost {
-  this() { super(); this.pool("tutorials"); }
-  this(Json newJson) {
-      this(); this.fromJson(newJson);
-  }
+  mixin(EntityThis!("CMSTutorial"));
 
   static string namespace = moduleName!DCMSTutorial;
   override string entityPath() { return "cms/tutorial"; }
@@ -16,7 +13,7 @@ class DCMSTutorial : DCMSPost {
 
   mixin(SProperty!("UUID", "tutorial"));
 
-  override DOOPEntity newEntity() { return CMSTutorial; }
+  override DOOPEntity clone() { return CMSTutorial; }
 
   override DOOPEntity fromJson(Json aJson) {
     if (aJson == Json(null)) return this;
@@ -46,5 +43,5 @@ class DCMSTutorial : DCMSPost {
     return result;
   }
 }
-auto CMSTutorial() { return new DCMSTutorial; }
-auto CMSTutorial(Json json) { return new DCMSTutorial(json); }
+mixin(EntityCalls!("CMSTutorial"));
+
