@@ -32,7 +32,7 @@
 		},
 		{
 			"name": "model_cms",
-			"versions": ["model_cms"]
+			"versions": ["test_model_cms"]
 		}
 	]
 }
