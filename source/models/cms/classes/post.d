@@ -11,7 +11,7 @@ class DCMSPost : DCMSEntity {
 
     this
     .attribute("keywords", OOPAttributeTags) 
-    .attribute("link", OOPAttributeString)
+    .attribute("link", OOPStringAttribute)
     .attribute("isPrivate", OOPAttributeBoolean) 
     .attribute("themeId", OOPAttributeUUID); 
   }
@@ -80,7 +80,7 @@ unittest { // Test attribute "isPrivate"
 
     json["isPrivate"] = true;
     writeln(json);
-    entity.fromJson(json);
+    entity.value(json);
     assert(entity["isPrivate"] == "true"); 
 
     assert("isPrivate" in entity.toJson);

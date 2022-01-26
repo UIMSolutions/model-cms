@@ -4,23 +4,25 @@ module models.cms.classes.entity;
 import models.cms;
 
 class DCMSEntity : DOOPEntity {
-  this() { super();
-    this
-    .attribute("imagePath", OOPAttributeString)
-    .attribute("mainTitle", OOPAttributeString)
-    .attribute("subTitle", OOPAttributeString)
-    .attribute("summary", OOPAttributeString)
-    .attribute("text", OOPAttributeString)
-    .attribute("isIndex", OOPAttributeBoolean); 
- 
-    this["isIndex"] = "nothing"; }
-  this(Json newJson) {
-      this(); this.fromJson(newJson);
-  }
+  mixin(OOPEntityThis!("CMSEntity"));
 
   override string entityClass() { return "cmsEntity"; }
   override string entityClasses() { return "cmsEntities"; }
   override string entityPath() { return "cmsEntities"; }
+
+  override void initialize() {
+    super.initialize;
+
+    this
+      .attribute("imagePath", OOPStringAttribute)
+      .attribute("mainTitle", OOPStringAttribute)
+      .attribute("subTitle", OOPStringAttribute)
+      .attribute("summary", OOPStringAttribute)
+      .attribute("text", OOPStringAttribute)
+      .attribute("isIndex", OOPAttributeBoolean); 
+ 
+    this["isIndex"] = "nothing"; }
+  }
 
   override DOOPEntity fromRequest(STRINGAA parameters) {
     super.fromRequest(parameters);
@@ -59,7 +61,7 @@ unittest { // Test attribute "imagePath"
     assert(entity["imagePath"] == "nothing"); 
 
     json["imagePath"] = "something";
-    entity.fromJson(json);
+    entity["imagePath"] = json.get!string;
     assert(entity["imagePath"] == "something"); 
 
     assert("imagePath" in entity.toJson);

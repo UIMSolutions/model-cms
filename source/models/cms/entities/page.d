@@ -13,7 +13,7 @@ class DCMSPage : DCMSEntity {
     .attribute("keywords", OOPAttributeTags) 
     .attribute("isPrivate", OOPAttributeBoolean) 
     .attribute("page", OOPAttributeUUID)
-    .attribute("url", OOPAttributeString);
+    .attribute("url", OOPStringAttribute);
   }
 
   override DOOPEntity clone() { return CMSPage; }
