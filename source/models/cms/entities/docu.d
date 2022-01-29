@@ -4,7 +4,7 @@ module models.cms.entities.docu;
 import models.cms;
 
 class DCMSDocu : DCMSPost {
-  mixin(EntityThis!("CMSDocu"));
+  mixin(OOPEntityThis!("CMSDocu"));
 
   override void initialize() {
     super.initialize;
@@ -14,13 +14,8 @@ class DCMSDocu : DCMSPost {
   }
 
   override DOOPEntity clone() { return CMSDocu; }
-
-  static string namespace = moduleName!DCMSDocu;
-  override string entityPath() { return "cms/docu"; }
-  override string entityClass() { return "cmsDocu"; }
-  override string entityClasses() { return "cmsDocus"; }  
 }
-mixin(EntityCalls!("CMSDocu"));
+mixin(OOPEntityCalls!("CMSDocu"));
 
 
 unittest { // Test attribute "docu"

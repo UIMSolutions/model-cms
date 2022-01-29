@@ -4,12 +4,7 @@ module models.cms.entities.tutorial;
 import models.cms;
 
 class DCMSTutorial : DCMSPost {
-  mixin(EntityThis!("CMSTutorial"));
-
-  static string namespace = moduleName!DCMSTutorial;
-  override string entityPath() { return "cms/tutorial"; }
-  override string entityClass() { return "cmsTutorial"; }
-  override string entityClasses() { return "cmsTutorials"; }  
+  mixin(OOPEntityThis!("CMSTutorial"));
 
   mixin(SProperty!("UUID", "tutorial"));
 
@@ -43,5 +38,5 @@ class DCMSTutorial : DCMSPost {
     return result;
   }
 }
-mixin(EntityCalls!("CMSTutorial"));
+mixin(OOPEntityCalls!("CMSTutorial"));
 

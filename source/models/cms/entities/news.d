@@ -5,14 +5,8 @@ import models.cms;
 
 
 class DCMSNewsItem : DCMSPost {
-  mixin(EntityThis!("CMSNewsItem"));
+  mixin(OOPEntityThis!("CMSNewsItem"));
 
-  static string namespace = moduleName!DCMSNewsItem;
-  override string entityPath() { return "cms/news"; }
-  override string entityClass() { return "cmsNewsItem"; }
-  override string entityClasses() { return "cmsNewsItems"; }  
-
-    
   mixin(SProperty!("UUID", "news"));
 
   override DOOPEntity clone() { return CMSNewsItem; }
@@ -45,7 +39,7 @@ class DCMSNewsItem : DCMSPost {
     return result;
   }
 }
-mixin(EntityCalls!("CMSNewsItem"));
+mixin(OOPEntityCalls!("CMSNewsItem"));
 
 
 

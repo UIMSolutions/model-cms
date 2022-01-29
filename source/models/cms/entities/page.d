@@ -4,23 +4,18 @@ module models.cms.entities.page;
 import models.cms;
 
 class DCMSPage : DCMSEntity {
-  mixin(EntityThis!("CMSPage"));
+  mixin(OOPEntityThis!("CMSPage"));
 
   override void initialize() {
     super.initialize;
 
     this
     .attribute("keywords", OOPAttributeTags) 
-    .attribute("isPrivate", OOPAttributeBoolean) 
+    .attribute("isPrivate", OOPBooleanAttribute) 
     .attribute("page", OOPAttributeUUID)
     .attribute("url", OOPStringAttribute);
   }
 
   override DOOPEntity clone() { return CMSPage; }
-
-  static string namespace = moduleName!DCMSPage;
-  override string entityPath() { return "cms/page"; }
-  override string entityClass() { return "cmsPage"; }
-  override string entityClasses() { return "cmsPages"; }   
 }
-mixin(EntityCalls!("CMSPage"));
+mixin(OOPEntityCalls!("CMSPage"));

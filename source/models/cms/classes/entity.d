@@ -6,10 +6,6 @@ import models.cms;
 class DCMSEntity : DOOPEntity {
   mixin(OOPEntityThis!("CMSEntity"));
 
-  override string entityClass() { return "cmsEntity"; }
-  override string entityClasses() { return "cmsEntities"; }
-  override string entityPath() { return "cmsEntities"; }
-
   override void initialize() {
     super.initialize;
 
@@ -19,9 +15,9 @@ class DCMSEntity : DOOPEntity {
       .attribute("subTitle", OOPStringAttribute)
       .attribute("summary", OOPStringAttribute)
       .attribute("text", OOPStringAttribute)
-      .attribute("isIndex", OOPAttributeBoolean); 
+      .attribute("isIndex", OOPBooleanAttribute); 
  
-    this["isIndex"] = "nothing"; }
+    this["isIndex"] = "nothing"; 
   }
 
   override DOOPEntity fromRequest(STRINGAA parameters) {
@@ -42,8 +38,7 @@ class DCMSEntity : DOOPEntity {
       // TOD Add Tests
     }}
 }
-auto CMSEntity() { return new DCMSEntity; }
-auto CMSEntity(Json json) { return new DCMSEntity(json); }
+mixin(OOPEntityCalls!("CMSEntity"));
 
 unittest { // Test attribute "imagePath"
   version(test_model_cms) {

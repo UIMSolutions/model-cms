@@ -4,13 +4,8 @@ module models.cms.entities.demo;
 import models.cms;
 
 class DCMSDemo : DCMSPost {
-  mixin(EntityThis!("CMSDemo"));
+  mixin(OOPEntityThis!("CMSDemo"));
 
-  static string namespace = moduleName!DCMSDemo;
-  override string entityPath() { return "cms/demo"; }
-  override string entityClass() { return "cmsDemo"; }
-  override string entityClasses() { return "cmsDemos"; }  
-  
   mixin(SProperty!("UUID", "demo"));
 
   override DOOPEntity clone() { return CMSDemo; }
@@ -43,6 +38,6 @@ class DCMSDemo : DCMSPost {
     return result;
   }
 }
-mixin(EntityCalls!("CMSDemo"));
+mixin(OOPEntityCalls!("CMSDemo"));
 
 

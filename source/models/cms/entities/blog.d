@@ -4,13 +4,8 @@ module models.cms.entities.blog;
 import models.cms;
 
 class DCMSBlog : DCMSPost {
-  mixin(EntityThis!("CMSBlog"));
+  mixin(OOPEntityThis!("CMSBlog"));
 
-  static string namespace = moduleName!DCMSBlog;
-  override string entityPath() { return "cms/blog"; }
-  override string entityClass() { return "cmsBlog"; }
-  override string entityClasses() { return "cmsBlogs"; }  
-  
   // This blog ist linked to blog
   mixin(SProperty!("UUID", "blog"));
   unittest {
@@ -55,5 +50,5 @@ class DCMSBlog : DCMSPost {
       // TOD Add Tests
     }}
 }
-mixin(EntityCalls!("CMSBlog"));
+mixin(OOPEntityCalls!("CMSBlog"));
 

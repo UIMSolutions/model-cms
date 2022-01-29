@@ -4,7 +4,7 @@ module models.cms.classes.post;
 import models.cms;
 
 class DCMSPost : DCMSEntity {
-  mixin(EntityThis!("CMSPost"));
+  mixin(OOPEntityThis!("CMSPost"));
 
   override void initialize() {
     super.initialize;
@@ -12,14 +12,9 @@ class DCMSPost : DCMSEntity {
     this
     .attribute("keywords", OOPAttributeTags) 
     .attribute("link", OOPStringAttribute)
-    .attribute("isPrivate", OOPAttributeBoolean) 
+    .attribute("isPrivate", OOPBooleanAttribute) 
     .attribute("themeId", OOPAttributeUUID); 
   }
-
-  static string namespace = moduleName!DCMSPost;
-  override string entityPath() { return moduleName!DCMSPost; }
-  override string entityClass() { return "cmsPost"; }
-  override string entityClasses() { return "cmsPosts"; }  
 
   mixin(OProperty!("DCMSTheme", "theme"));
 
@@ -61,7 +56,7 @@ class DCMSPost : DCMSEntity {
     return this;
   }
 }
-mixin(EntityCalls!("CMSPost"));
+mixin(OOPEntityCalls!("CMSPost"));
 
 unittest { // Test attribute "isPrivate"
   version(test_model_cms) {

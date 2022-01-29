@@ -18,24 +18,7 @@ public import models.cms.entities;
 public import models.cms.tests;
 
 static this() {
-  uimRegistryEntities
-  .register("cms/blogs", CMSBlog)
-  .register("cmsBlogs", CMSBlog)
-  .register("cms/demos", CMSDemo)
-  .register("cmsDemos", CMSDemo)
-  .register("cms/docus", CMSDocu)
-  .register("cms/glossary", CMSGlossaryItem)
-  .register("cmsGlossary", CMSGlossaryItem)
-  .register("cms/links", CMSLink)
-  .register("cmsLinks", CMSLink)
-  .register("cms/news", CMSNewsItem)
-  .register("cmsNews", CMSNewsItem)
-  .register("cms/offers", CMSOffer)
-  .register("cmsOffers", CMSOffer)
-  .register("cms/pages", CMSPage)
-  .register("cmsPages", CMSPage)
-  .register("cms/themes", CMSTheme)
-  .register("cmsThemes", CMSTheme)
-  .register("cms/tutorials", CMSTutorial)
-  .register("cmsTutorials", CMSTutorial);
+  uimEntityRegistry
+  .register(CMSBlog, CMSDemo, CMSDocu, CMSGlossaryItem, 
+    CMSLink, CMSNewsItem, CMSOffer, CMSPage, CMSTheme, CMSTutorial);
 }

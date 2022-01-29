@@ -4,13 +4,8 @@ module models.cms.entities.theme;
 import models.cms;
 
 class DCMSTheme : DCMSEntity {
-  mixin(EntityThis!("CMSTheme"));
+  mixin(OOPEntityThis!("CMSTheme"));
 
-  static string namespace = moduleName!DCMSTheme;
-  override string entityPath() { return "cms/theme"; }
-  override string entityClass() { return "cmsTheme"; }
-  override string entityClasses() { return "cmsThemes"; }  
- 
   override DOOPEntity clone() { return CMSTheme; }
 
   override DOOPEntity fromJson(Json aJson) {
@@ -47,4 +42,4 @@ class DCMSTheme : DCMSEntity {
     return result;
   }
 }
-mixin(EntityCalls!("CMSTheme"));
+mixin(OOPEntityCalls!("CMSTheme"));

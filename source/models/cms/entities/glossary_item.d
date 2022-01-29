@@ -4,13 +4,8 @@ module models.cms.entities.glossary_item;
 import models.cms;
 
 class DCMSGlossaryItem : DCMSPost {
-  mixin(EntityThis!("CMSGlossaryItem"));
+  mixin(OOPEntityThis!("CMSGlossaryItem"));
 
-  static string namespace = moduleName!DCMSGlossaryItem;
-  override string entityPath() { return "cms/glossaryitem"; }
-  override string entityClass() { return "cmsGlossaryItem"; }
-  override string entityClasses() { return "cmsGlossaryItems"; }  
-    
 //    mixin(SProperty!("UUID", "glossary_item"));
 
   override DOOPEntity clone() { return CMSGlossaryItem; }
@@ -43,5 +38,5 @@ class DCMSGlossaryItem : DCMSPost {
     return result;
   }
 }
-mixin(EntityCalls!("CMSGlossaryItem"));
+mixin(OOPEntityCalls!("CMSGlossaryItem"));
 
