@@ -10,9 +10,8 @@ class DCMSOffer : DCMSPost {
     super.initialize;
 
     this
-    .attribute("offer", OOPAttributeUUID); 
+      .attribute("offerId", OOPAttributeUUID) 
+      .registerPath("cms_offers");
   }
-
-  override DOOPEntity clone() { return CMSOffer; }
 }
 mixin(OOPEntityCalls!("CMSOffer"));

@@ -13,9 +13,8 @@ class DCMSPage : DCMSEntity {
     .attribute("keywords", OOPAttributeTags) 
     .attribute("isPrivate", OOPBooleanAttribute) 
     .attribute("page", OOPAttributeUUID)
-    .attribute("url", OOPStringAttribute);
+    .attribute("url", OOPStringAttribute)
+    .registerPath("cms_pages");
   }
-
-  override DOOPEntity clone() { return CMSPage; }
 }
 mixin(OOPEntityCalls!("CMSPage"));

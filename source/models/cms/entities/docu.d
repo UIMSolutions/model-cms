@@ -10,10 +10,9 @@ class DCMSDocu : DCMSPost {
     super.initialize;
     
     this
-    .attribute("docu", OOPAttributeUUID); 
+    .attribute("docu", OOPAttributeUUID) 
+    .registerPath("cms_docus");
   }
-
-  override DOOPEntity clone() { return CMSDocu; }
 }
 mixin(OOPEntityCalls!("CMSDocu"));
 

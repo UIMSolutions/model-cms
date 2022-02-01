@@ -6,7 +6,13 @@ import models.cms;
 class DCMSLink : DCMSPost {
   mixin(OOPEntityThis!("CMSLink"));
 
-  override DOOPEntity clone() { return CMSLink; }
+  override void initialize() {
+    super.initialize;
+
+    this
+      .attribute("linkId", OOPAttributeUUID) 
+      .registerPath("cms_links");
+  }
 }
 mixin(OOPEntityCalls!("CMSLink"));
 
