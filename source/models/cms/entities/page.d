@@ -10,9 +10,9 @@ class DCMSPage : DCMSEntity {
     super.initialize;
 
     this
-    .attribute("keywords", OOPAttributeTags) 
+    .attribute("keywords", OOPTagsAttribute) 
     .attribute("isPrivate", OOPBooleanAttribute) 
-    .attribute("page", OOPAttributeUUID)
+    .attribute("page", OOPUUIDAttribute)
     .attribute("url", OOPStringAttribute)
     .registerPath("cms_pages");
   }

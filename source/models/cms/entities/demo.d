@@ -10,7 +10,7 @@ class DCMSDemo : DCMSPost {
     super.initialize;
 
     this
-      .attribute("demoId", OOPAttributeUUID) 
+      .attribute("demoId", OOPUUIDAttribute) 
       .registerPath("cms_demos");
   }
 }

@@ -10,7 +10,7 @@ class DCMSBlog : DCMSPost {
     super.initialize;
 
     this
-      .attribute("blogId", OOPAttributeUUID) 
+      .attribute("blogId", OOPUUIDAttribute) 
       .registerPath("cms_blogs");
   }
 }

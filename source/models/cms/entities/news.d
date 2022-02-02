@@ -11,7 +11,7 @@ class DCMSNewsItem : DCMSPost {
     super.initialize;
 
     this
-      .attribute("newsId", OOPAttributeUUID) 
+      .attribute("newsId", OOPUUIDAttribute) 
       .registerPath("cms_news");
   }
 }

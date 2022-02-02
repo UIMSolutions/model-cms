@@ -10,22 +10,22 @@ class DCMSPost : DCMSEntity {
     super.initialize;
 
     this
-    .attribute("keywords", OOPAttributeTags) 
+    .attribute("keywords", OOPTagsAttribute) 
     .attribute("link", OOPStringAttribute)
     .attribute("isPrivate", OOPBooleanAttribute) 
-    .attribute("themeId", OOPAttributeUUID); 
+    .attribute("themeId", OOPUUIDAttribute); 
   }
 
   mixin(OProperty!("DCMSTheme", "theme"));
 
   string[] keywords() { 
-    if (auto attribute = cast(DOOPAttributeTags)attributes["keywords"]) {
+    if (auto attribute = cast(DOOPTagsAttribute)attributes["keywords"]) {
       return attribute.value; } 
     return null;
   }
 
   O keywords(this O)(string[] values) { 
-    if (auto attribute = cast(DOOPAttributeTags)attributes["keywords"]) {
+    if (auto attribute = cast(DOOPTagsAttribute)attributes["keywords"]) {
       attribute.value(values); } 
     return cast(O)this;
   }

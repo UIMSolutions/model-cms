@@ -10,7 +10,7 @@ class DCMSDocu : DCMSPost {
     super.initialize;
     
     this
-    .attribute("docu", OOPAttributeUUID) 
+    .attribute("docu", OOPUUIDAttribute) 
     .registerPath("cms_docus");
   }
 }

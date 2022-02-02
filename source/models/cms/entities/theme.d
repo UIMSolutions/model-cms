@@ -10,7 +10,7 @@ class DCMSTheme : DCMSEntity {
     super.initialize;
 
     this
-      .attribute("themeId", OOPAttributeUUID) 
+      .attribute("themeId", OOPUUIDAttribute) 
       .registerPath("cms_themes");
   }
 }

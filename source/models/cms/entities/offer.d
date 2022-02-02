@@ -10,7 +10,7 @@ class DCMSOffer : DCMSPost {
     super.initialize;
 
     this
-      .attribute("offerId", OOPAttributeUUID) 
+      .attribute("offerId", OOPUUIDAttribute) 
       .registerPath("cms_offers");
   }
 }

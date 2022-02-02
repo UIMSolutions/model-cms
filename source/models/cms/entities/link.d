@@ -10,7 +10,7 @@ class DCMSLink : DCMSPost {
     super.initialize;
 
     this
-      .attribute("linkId", OOPAttributeUUID) 
+      .attribute("linkId", OOPUUIDAttribute) 
       .registerPath("cms_links");
   }
 }
