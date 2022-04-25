@@ -4,7 +4,7 @@ module models.cms.entities.demo;
 import models.cms;
 
 class DCMSDemo : DCMSPost {
-  mixin(OOPEntityThis!("CMSDemo"));
+  mixin(EntityThis!("CMSDemo"));
 
   override void initialize() {
     super.initialize;
@@ -14,6 +14,6 @@ class DCMSDemo : DCMSPost {
       .registerPath("cms_demos");
   }
 }
-mixin(OOPEntityCalls!("CMSDemo"));
+mixin(EntityCalls!("CMSDemo"));
 
 

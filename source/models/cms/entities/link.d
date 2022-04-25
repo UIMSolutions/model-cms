@@ -4,7 +4,7 @@ module models.cms.entities.link;
 import models.cms;
 
 class DCMSLink : DCMSPost {
-  mixin(OOPEntityThis!("CMSLink"));
+  mixin(EntityThis!("CMSLink"));
 
   override void initialize() {
     super.initialize;
@@ -14,6 +14,6 @@ class DCMSLink : DCMSPost {
       .registerPath("cms_links");
   }
 }
-mixin(OOPEntityCalls!("CMSLink"));
+mixin(EntityCalls!("CMSLink"));
 
 

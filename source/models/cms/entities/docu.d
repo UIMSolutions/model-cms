@@ -4,7 +4,7 @@ module models.cms.entities.docu;
 import models.cms;
 
 class DCMSDocu : DCMSPost {
-  mixin(OOPEntityThis!("CMSDocu"));
+  mixin(EntityThis!("CMSDocu"));
 
   override void initialize() {
     super.initialize;
@@ -14,7 +14,7 @@ class DCMSDocu : DCMSPost {
     .registerPath("cms_docus");
   }
 }
-mixin(OOPEntityCalls!("CMSDocu"));
+mixin(EntityCalls!("CMSDocu"));
 
 
 unittest { // Test attribute "docu"

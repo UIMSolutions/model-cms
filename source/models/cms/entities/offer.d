@@ -4,7 +4,7 @@ module models.cms.entities.offer;
 import models.cms;
 
 class DCMSOffer : DCMSPost {
-  mixin(OOPEntityThis!("CMSOffer"));
+  mixin(EntityThis!("CMSOffer"));
 
   override void initialize() {
     super.initialize;
@@ -14,4 +14,4 @@ class DCMSOffer : DCMSPost {
       .registerPath("cms_offers");
   }
 }
-mixin(OOPEntityCalls!("CMSOffer"));
+mixin(EntityCalls!("CMSOffer"));

@@ -4,7 +4,7 @@ module models.cms.classes.entity;
 import models.cms;
 
 class DCMSEntity : DOOPEntity {
-  mixin(OOPEntityThis!("CMSEntity"));
+  mixin(EntityThis!("CMSEntity"));
 
   override void initialize() {
     super.initialize;
@@ -38,7 +38,7 @@ class DCMSEntity : DOOPEntity {
       // TOD Add Tests
     }}
 }
-mixin(OOPEntityCalls!("CMSEntity"));
+mixin(EntityCalls!("CMSEntity"));
 
 unittest { // Test attribute "imagePath"
   version(test_model_cms) {

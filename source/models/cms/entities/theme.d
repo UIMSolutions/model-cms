@@ -4,7 +4,7 @@ module models.cms.entities.theme;
 import models.cms;
 
 class DCMSTheme : DCMSEntity {
-  mixin(OOPEntityThis!("CMSTheme"));
+  mixin(EntityThis!("CMSTheme"));
 
     override void initialize() {
     super.initialize;
@@ -14,4 +14,4 @@ class DCMSTheme : DCMSEntity {
       .registerPath("cms_themes");
   }
 }
-mixin(OOPEntityCalls!("CMSTheme"));
+mixin(EntityCalls!("CMSTheme"));

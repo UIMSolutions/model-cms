@@ -4,7 +4,7 @@ module models.cms.entities.tutorial;
 import models.cms;
 
 class DCMSTutorial : DCMSPost {
-  mixin(OOPEntityThis!("CMSTutorial"));
+  mixin(EntityThis!("CMSTutorial"));
 
   override void initialize() {
     super.initialize;
@@ -14,5 +14,5 @@ class DCMSTutorial : DCMSPost {
       .registerPath("cms_tutorials");
   }
 }
-mixin(OOPEntityCalls!("CMSTutorial"));
+mixin(EntityCalls!("CMSTutorial"));
 

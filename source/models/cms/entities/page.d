@@ -4,7 +4,7 @@ module models.cms.entities.page;
 import models.cms;
 
 class DCMSPage : DCMSEntity {
-  mixin(OOPEntityThis!("CMSPage"));
+  mixin(EntityThis!("CMSPage"));
 
   override void initialize() {
     super.initialize;
@@ -17,4 +17,4 @@ class DCMSPage : DCMSEntity {
     .registerPath("cms_pages");
   }
 }
-mixin(OOPEntityCalls!("CMSPage"));
+mixin(EntityCalls!("CMSPage"));

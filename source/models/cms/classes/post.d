@@ -4,7 +4,7 @@ module models.cms.classes.post;
 import models.cms;
 
 class DCMSPost : DCMSEntity {
-  mixin(OOPEntityThis!("CMSPost"));
+  mixin(EntityThis!("CMSPost"));
 
   override void initialize() {
     super.initialize;
@@ -56,7 +56,7 @@ class DCMSPost : DCMSEntity {
     return this;
   }
 }
-mixin(OOPEntityCalls!("CMSPost"));
+mixin(EntityCalls!("CMSPost"));
 
 unittest { // Test attribute "isPrivate"
   version(test_model_cms) {

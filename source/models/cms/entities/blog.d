@@ -4,7 +4,7 @@ module models.cms.entities.blog;
 import models.cms;
 
 class DCMSBlog : DCMSPost {
-  mixin(OOPEntityThis!("CMSBlog"));
+  mixin(EntityThis!("CMSBlog"));
 
   override void initialize() {
     super.initialize;
@@ -14,5 +14,5 @@ class DCMSBlog : DCMSPost {
       .registerPath("cms_blogs");
   }
 }
-mixin(OOPEntityCalls!("CMSBlog"));
+mixin(EntityCalls!("CMSBlog"));
 

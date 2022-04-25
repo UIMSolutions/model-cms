@@ -5,7 +5,7 @@ import models.cms;
 
 
 class DCMSNewsItem : DCMSPost {
-  mixin(OOPEntityThis!("CMSNewsItem"));
+  mixin(EntityThis!("CMSNewsItem"));
 
   override void initialize() {
     super.initialize;
@@ -15,7 +15,7 @@ class DCMSNewsItem : DCMSPost {
       .registerPath("cms_news");
   }
 }
-mixin(OOPEntityCalls!("CMSNewsItem"));
+mixin(EntityCalls!("CMSNewsItem"));
 
 
 
