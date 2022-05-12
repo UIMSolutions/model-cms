@@ -13,6 +13,7 @@ public import uim.entities;
 
 // public import uim.models;
 
+public import models.cms.attributes;
 public import models.cms.classes;
 public import models.cms.entities;
 public import models.cms.tests;
