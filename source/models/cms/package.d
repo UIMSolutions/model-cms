@@ -19,14 +19,7 @@ public import models.cms.entities;
 public import models.cms.tests;
 
 static this() {
-<<<<<<< HEAD
   EntityRegistry
     .register(CMSBlog, CMSDemo, CMSDocu, CMSGlossaryItem, 
       CMSLink, CMSNewsItem, CMSOffer, CMSPage, CMSTheme, CMSTutorial);
 }
-=======
-  uimEntityRegistry
-  .register(CMSBlog, CMSDemo, CMSDocu, CMSGlossaryItem, 
-    CMSLink, CMSNewsItem, CMSOffer, CMSPage, CMSTheme, CMSTutorial);
-}
->>>>>>> 146355525095d604c4252ad490da242b9b971cb9
