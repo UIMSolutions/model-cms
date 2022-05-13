@@ -10,11 +10,13 @@ class DCMSPage : DCMSEntity {
     super.initialize;
 
     this
-    .attribute("keywords", OOPTagsAttribute) 
-    .attribute("isPrivate", OOPBooleanAttribute) 
-    .attribute("page", OOPUUIDAttribute)
-    .attribute("url", OOPStringAttribute)
-    .registerPath("cms_pages");
+      .addValues([
+        "keywords": TagsAttribute,
+        "isPrivate": BooleanAttribute,
+        "page": UUIDAttribute,
+        "url": StringAttribute
+      ])
+      .registerPath("cms_pages");
   }
 }
 mixin(EntityCalls!("CMSPage"));

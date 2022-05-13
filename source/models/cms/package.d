@@ -18,7 +18,7 @@ public import models.cms.entities;
 public import models.cms.tests;
 
 static this() {
-  uimEntityRegistry
-  .register(CMSBlog, CMSDemo, CMSDocu, CMSGlossaryItem, 
-    CMSLink, CMSNewsItem, CMSOffer, CMSPage, CMSTheme, CMSTutorial);
+  EntityRegistry
+    .register(CMSBlog, CMSDemo, CMSDocu, CMSGlossaryItem, 
+      CMSLink, CMSNewsItem, CMSOffer, CMSPage, CMSTheme, CMSTutorial);
 }

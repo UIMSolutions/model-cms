@@ -10,12 +10,14 @@ class DCMSEntity : DOOPEntity {
     super.initialize;
 
     this
-      .attribute("imagePath", OOPStringAttribute)
-      .attribute("mainTitle", OOPStringAttribute)
-      .attribute("subTitle", OOPStringAttribute)
-      .attribute("summary", OOPStringAttribute)
-      .attribute("text", OOPStringAttribute)
-      .attribute("isIndex", OOPBooleanAttribute); 
+      .addValues([
+        "imagePath": StringAttribute,
+        "mainTitle": StringAttribute,
+        "subTitle": StringAttribute,
+        "summary": StringAttribute,
+        "text": StringAttribute,
+        "isIndex": BooleanAttribute
+      ]); 
  
     this["isIndex"] = "nothing"; 
   }

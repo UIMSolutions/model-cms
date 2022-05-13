@@ -10,7 +10,9 @@ class DCMSTutorial : DCMSPost {
     super.initialize;
 
     this
-      .attribute("tutorialId", OOPUUIDAttribute) 
+      .addValues([
+        "tutorialId": UUIDAttribute
+      ]) 
       .registerPath("cms_tutorials");
   }
 }

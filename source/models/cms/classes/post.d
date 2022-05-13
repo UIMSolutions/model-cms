@@ -10,23 +10,25 @@ class DCMSPost : DCMSEntity {
     super.initialize;
 
     this
-    .attribute("keywords", OOPTagsAttribute) 
-    .attribute("link", OOPStringAttribute)
-    .attribute("isPrivate", OOPBooleanAttribute) 
-    .attribute("themeId", OOPUUIDAttribute); 
+      .addValues([
+        "keywords": TagsAttribute, 
+        "link": StringAttribute,
+        "isPrivate": BooleanAttribute, 
+        "themeId": UUIDAttribute
+      ]); 
   }
 
   mixin(OProperty!("DCMSTheme", "theme"));
 
   string[] keywords() { 
-    if (auto attribute = cast(DOOPTagsAttribute)attributes["keywords"]) {
-      return attribute.value; } 
+    if (auto myValue = cast(DTagArrayValue)this.values["keywords"]) {
+      return myValue.value; } 
     return null;
   }
 
-  O keywords(this O)(string[] values) { 
-    if (auto attribute = cast(DOOPTagsAttribute)attributes["keywords"]) {
-      attribute.value(values); } 
+  O keywords(this O)(string[] newValues) { 
+    if (auto myValue = cast(DTagArrayValue)this.values["keywords"]) {
+      myValue.value(newValues); } 
     return cast(O)this;
   }
 

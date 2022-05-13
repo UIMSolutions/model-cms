@@ -10,7 +10,9 @@ class DCMSGlossaryItem : DCMSPost {
     super.initialize;
 
     this
-      .attribute("glossaryId", OOPUUIDAttribute) 
+      .addValues([
+        "glossaryId": UUIDAttribute
+      ]) 
       .registerPath("cms_glossary");
   }
 }
