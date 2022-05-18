@@ -18,9 +18,8 @@ class DCMSDocu : DCMSPost {
 }
 mixin(EntityCalls!("CMSDocu"));
 
-
-unittest { // Test attribute "docu"
-  version(test_model_cms) {
+version(test_model_cms) {
+  unittest { // Test attribute "docu"
     auto entity = CMSPost;
 
     // TOD Add Test
