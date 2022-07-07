@@ -2,7 +2,7 @@
     "authors": ["UI Manufaktur UG"],
     "copyright": "Copyright © 2017 - 2020, UI Manufaktur UG",
     "description": "Model for CMS applications",
-    "license": "MIT",
+    "license": "Apache-2.0",
     "name": "model-cms",
 	"dependencies": {
 		"colored": "~>0.0.23",
