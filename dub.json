@@ -5,8 +5,8 @@
     "license": "Apache-2.0",
     "name": "model-cms",
 	"dependencies": {
-		"colored": "~>0.0.23",
-		"vibe-d": "~>0.9.5-beta.1"
+		"colored": "~>0.0.28",
+		"vibe-d": "~>0.9.5"
 	},
     "sourcePaths": [
         "../../LIBS/uim-core",
