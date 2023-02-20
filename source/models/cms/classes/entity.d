@@ -7,7 +7,7 @@ class DCMSEntity : DOOPEntity {
   mixin(EntityThis!("CMSEntity"));
 
   override void initialize() {
-    super.initialize;
+    super.initialize(configSettings);
 
     this
       .addValues([

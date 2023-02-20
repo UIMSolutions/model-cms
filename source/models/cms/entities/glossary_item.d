@@ -7,7 +7,7 @@ class DCMSGlossaryItem : DCMSPost {
   mixin(EntityThis!("CMSGlossaryItem"));
 
   override void initialize() {
-    super.initialize;
+    super.initialize(configSettings);
 
     this
       .addValues([

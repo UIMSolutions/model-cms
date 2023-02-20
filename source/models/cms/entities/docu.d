@@ -7,7 +7,7 @@ class DCMSDocu : DCMSPost {
   mixin(EntityThis!("CMSDocu"));
 
   override void initialize() {
-    super.initialize;
+    super.initialize(configSettings);
     
     this
       .addValues([
