@@ -10,7 +10,7 @@ class DCMSBlog : DCMSPost {
     super.initialize(configSettings);
 
     this
-      .addValues([
+      .addAttributes([
         "blogId": UUIDAttribute
       ]) 
       .registerPath("cms_blogs");

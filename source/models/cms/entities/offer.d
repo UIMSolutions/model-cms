@@ -10,7 +10,7 @@ class DCMSOffer : DCMSPost {
     super.initialize(configSettings);
 
     this
-      .addValues([
+      .addAttributes([
         "offerId": UUIDAttribute
       ]) 
       .registerPath("cms_offers");

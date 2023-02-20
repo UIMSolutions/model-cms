@@ -10,7 +10,7 @@ class DCMSTutorial : DCMSPost {
     super.initialize(configSettings);
 
     this
-      .addValues([
+      .addAttributes([
         "tutorialId": UUIDAttribute
       ]) 
       .registerPath("cms_tutorials");

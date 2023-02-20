@@ -3,14 +3,14 @@ module models.cms.classes.entity;
 @safe:
 import models.cms;
 
-class DCMSEntity : DOOPEntity {
+class DCMSEntity : DEntity {
   mixin(EntityThis!("CMSEntity"));
 
   override void initialize(DConfigurationValue configSettings = null) {
     super.initialize(configSettings);
 
     this
-      .addValues([
+      .addAttributes([
         "imagePath": StringAttribute,
         "mainTitle": StringAttribute,
         "subTitle": StringAttribute,
@@ -22,7 +22,7 @@ class DCMSEntity : DOOPEntity {
     this["isIndex"] = "nothing"; 
   }
 
-  override DOOPEntity fromRequest(STRINGAA parameters) {
+  override DEntity fromRequest(STRINGAA parameters) {
     super.fromRequest(parameters);
     foreach(k, v; [
       "entity_imagepath":"imagePath", 

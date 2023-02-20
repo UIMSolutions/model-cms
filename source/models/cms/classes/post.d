@@ -10,7 +10,7 @@ class DCMSPost : DCMSEntity {
     super.initialize(configSettings);
 
     this
-      .addValues([
+      .addAttributes([
         "keywords": TagsAttribute, 
         "link": StringAttribute,
         "isPrivate": BooleanAttribute, 
@@ -32,7 +32,7 @@ class DCMSPost : DCMSEntity {
     return cast(O)this;
   }
 
-  override DOOPEntity fromRequest(STRINGAA parameters) {
+  override DEntity fromRequest(STRINGAA parameters) {
     super.fromRequest(parameters);
     foreach(k, v; [
       "entity_keywords":"keywords", 
@@ -43,7 +43,7 @@ class DCMSPost : DCMSEntity {
     return this;
   }
 
-  override DOOPEntity fromJson(Json aJson) {
+  override DEntity fromJson(Json aJson) {
     if (aJson == Json(null)) return this;
     super.fromJson(aJson);
     

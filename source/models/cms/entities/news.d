@@ -11,7 +11,7 @@ class DCMSNewsItem : DCMSPost {
     super.initialize(configSettings);
 
     this
-      .addValues([
+      .addAttributes([
         "newsId": UUIDAttribute 
       ])
       .registerPath("cms_news");
