@@ -6,7 +6,7 @@ import models.cms;
 class DCMSEntity : DOOPEntity {
   mixin(EntityThis!("CMSEntity"));
 
-  override void initialize() {
+  override void initialize(DConfigurationValue configSettings = null) {
     super.initialize(configSettings);
 
     this

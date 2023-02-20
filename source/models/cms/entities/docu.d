@@ -6,7 +6,7 @@ import models.cms;
 class DCMSDocu : DCMSPost {
   mixin(EntityThis!("CMSDocu"));
 
-  override void initialize() {
+  override void initialize(DConfigurationValue configSettings = null) {
     super.initialize(configSettings);
     
     this

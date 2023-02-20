@@ -6,7 +6,7 @@ import models.cms;
 class DCMSOffer : DCMSPost {
   mixin(EntityThis!("CMSOffer"));
 
-  override void initialize() {
+  override void initialize(DConfigurationValue configSettings = null) {
     super.initialize(configSettings);
 
     this

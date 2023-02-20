@@ -6,7 +6,7 @@ import models.cms;
 class DCMSLink : DCMSPost {
   mixin(EntityThis!("CMSLink"));
 
-  override void initialize() {
+  override void initialize(DConfigurationValue configSettings = null) {
     super.initialize(configSettings);
 
     this
