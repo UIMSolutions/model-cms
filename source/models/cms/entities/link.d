@@ -7,7 +7,7 @@ class DCMSLink : DCMSPost {
   mixin(EntityThis!("CMSLink"));
 
   override void initialize() {
-    super.initialize;
+    super.initialize(configSettings);
 
     this
       .addValues([

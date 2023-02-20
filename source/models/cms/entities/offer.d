@@ -7,7 +7,7 @@ class DCMSOffer : DCMSPost {
   mixin(EntityThis!("CMSOffer"));
 
   override void initialize() {
-    super.initialize;
+    super.initialize(configSettings);
 
     this
       .addValues([

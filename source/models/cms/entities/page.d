@@ -7,7 +7,7 @@ class DCMSPage : DCMSEntity {
   mixin(EntityThis!("CMSPage"));
 
   override void initialize() {
-    super.initialize;
+    super.initialize(configSettings);
 
     this
       .addValues([
