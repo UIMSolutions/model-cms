@@ -9,6 +9,7 @@ public import vibe.d;
 
 public import uim.core;
 public import uim.oop;
+public import uim.models;
 
 // public import uim.models;
 

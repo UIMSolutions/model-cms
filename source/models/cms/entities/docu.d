@@ -10,7 +10,7 @@ class DCMSDocu : DCMSPost {
     super.initialize(configSettings);
     
     this
-      .addAttributes([
+      .addValues([
         "docu": UUIDAttribute
       ]) 
     .registerPath("cms_docus");
@@ -18,8 +18,7 @@ class DCMSDocu : DCMSPost {
 }
 mixin(EntityCalls!("CMSDocu"));
 
-version(test_model_cms) {
-  unittest { // Test attribute "docu"
+version(test_model_cms) version(test_models_applications) { unittest { // Test attribute "docu"
     auto entity = CMSPost;
 
     // TOD Add Test

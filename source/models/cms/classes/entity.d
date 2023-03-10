@@ -10,7 +10,7 @@ class DCMSEntity : DEntity {
     super.initialize(configSettings);
 
     this
-      .addAttributes([
+      .addValues([
         "imagePath": StringAttribute,
         "mainTitle": StringAttribute,
         "subTitle": StringAttribute,

@@ -10,7 +10,7 @@ class DCMSGlossaryItem : DCMSPost {
     super.initialize(configSettings);
 
     this
-      .addAttributes([
+      .addValues([
         "glossaryId": UUIDAttribute
       ]) 
       .registerPath("cms_glossary");

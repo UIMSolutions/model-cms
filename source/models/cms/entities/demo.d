@@ -10,7 +10,7 @@ class DCMSDemo : DCMSPost {
     super.initialize(configSettings);
 
     this
-      .addAttributes([
+      .addValues([
         "demoId": UUIDAttribute
       ]) 
       .registerPath("cms_demos");

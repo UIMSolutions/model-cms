@@ -10,7 +10,7 @@ class DCMSLink : DCMSPost {
     super.initialize(configSettings);
 
     this
-      .addAttributes([
+      .addValues([
         "linkId": UUIDAttribute
       ]) 
       .registerPath("cms_links");
