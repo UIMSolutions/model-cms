@@ -6,7 +6,7 @@ import models.cms;
 class DCMSGlossaryItem : DCMSPost {
   mixin(EntityThis!("CMSGlossaryItem"));
 
-  override void initialize(DConfigurationValue configSettings = null) {
+  override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
     this

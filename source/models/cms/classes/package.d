@@ -1,8 +1,5 @@
 module models.cms.classes;
 
-@safe:
-import models.cms;
-
 public import models.cms.classes.entity;
 public import models.cms.classes.post;
 

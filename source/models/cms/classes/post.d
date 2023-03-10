@@ -6,11 +6,11 @@ import models.cms;
 class DCMSPost : DCMSEntity {
   mixin(EntityThis!("CMSPost"));
 
-  override void initialize(DConfigurationValue configSettings = null) {
+  override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
     this
-      .addAttributes([
+      .addValues([
         "keywords": TagsAttribute, 
         "link": StringAttribute,
         "isPrivate": BooleanAttribute, 
@@ -43,66 +43,58 @@ class DCMSPost : DCMSEntity {
     return this;
   }
 
-  override DEntity fromJson(Json aJson) {
-    if (aJson == Json(null)) return this;
+  override void fromJson(Json aJson) {
+    if (aJson == Json(null)) return;
     super.fromJson(aJson);
-    
+
     foreach (keyvalue; aJson.byKeyValue) {
-      auto k = keyvalue.key;
+      auto k = keyvalue.key.toLower;
       auto v = keyvalue.value;
       switch(k) {
         case "theme": this["themeId"] = v.get!string; break;
+        case "isprivate": this["isPrivate"] = v.get!bool; break;
         default: break;
       }      
     }
-    return this;
   }
 }
 mixin(EntityCalls!("CMSPost"));
 
+///
 unittest { // Test attribute "isPrivate"
-  version(test_model_cms) {
-    auto entity = CMSPost;
-    entity["isPrivate"] = "true";
-    assert(entity["isPrivate"] == "true"); 
-    
-    entity["isPrivate"] = "false";
-    assert(entity["isPrivate"] == "false"); 
+  auto entity = new DCMSPost;
+  assert(cast(DBooleanValue)entity.values["isPrivate"]);
 
-    auto json = Json.emptyObject;
-    json["isPrivate"] = false;
-    writeln(json);
-    entity.fromJson(json);
-    assert(entity["isPrivate"] == "false"); 
+  entity["isPrivate"] = "true";
+  assert(entity["isPrivate"] == "true"); 
+  
+  entity["isPrivate"] = "false";
+  assert(entity["isPrivate"] == "false"); 
 
-    json["isPrivate"] = true;
-    writeln(json);
-    entity.value(json);
-    assert(entity["isPrivate"] == "true"); 
+  auto json = Json.emptyObject;
+  json["isPrivate"] = false;
 
-    assert("isPrivate" in entity.toJson);
-    assert(entity.toJson["isPrivate"].get!bool);
-    entity["isPrivate"] = "false"; 
-    assert(!entity.toJson["isPrivate"].get!bool);
-   }
+  entity.fromJson(json);
+  assert(entity["isPrivate"] == "false"); 
+
+  json["isPrivate"] = true;
+  entity.fromJson(json);
+  assert(entity["isPrivate"] == "true"); 
+
+  assert("isPrivate" in entity.toJson);
+  assert(entity.toJson["isPrivate"].get!bool);
+  entity["isPrivate"] = "false"; 
+  assert(!entity.toJson["isPrivate"].get!bool); 
 }
 
 unittest {  // Test attribute "keywords"
-  version(test_model_cms) {
     auto entity = CMSPost;
-    entity["keywords"] = "one,two,three";
-    assert(entity["keywords"] == "one,two,three"); 
+    entity["keywords"] = "#one#two#three";
+    assert(entity["keywords"] == "#one#two#three"); 
     
-    entity["keywords"] = "one, three";
-    assert(entity["keywords"] == "one,three"); 
-
-    entity["keywords"] = "one,two #three";
-    debug writeln(entity["keywords"]); 
-    assert(entity["keywords"] == "one,two,three"); 
+    entity["keywords"] = "#one #two #three";
+    assert(entity["keywords"] == "#one#two#three"); 
     
-    entity["keywords"] = ",one,three";
-    assert(entity["keywords"] == "one,three"); 
-
     auto json = Json.emptyObject;
     auto tags = Json.emptyArray;
     tags ~= "one";
@@ -110,12 +102,10 @@ unittest {  // Test attribute "keywords"
     tags ~= "three";
     json["keywords"] = tags;
     entity.fromJson(json);
-    assert(entity["keywords"] == "one,two,three"); 
-  }
+    assert(entity["keywords"] == "#one#two#three"); 
 }
 
 unittest { // Test attribute "link"
-  version(test_model_cms) {
     auto entity = CMSPost;
     entity["link"] = "something";
     assert(entity["link"] == "something"); 
@@ -135,7 +125,6 @@ unittest { // Test attribute "link"
 
     assert("link" in entity.toJson);
     assert(entity.toJson["link"].get!string == "something");
-  }
 }
 
 unittest { // Test attribute "theme"
