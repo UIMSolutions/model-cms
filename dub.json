@@ -1,6 +1,9 @@
 {
-    "authors": ["Ozan Nurettin Süel (Sicherheitsschmiede)"],
-    "copyright": "Copyright © 2017 - 2020, UI Manufaktur UG",
+	"authors": [
+		"Sicherheitsschmiede",
+		"Ozan Nurettin Süel"
+	],
+	"copyright": "Copyright © 2015-2023, Ozan NUrettin Süel",
     "description": "Model for CMS applications",
     "license": "Apache-2.0",
     "name": "model-cms",

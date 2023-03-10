@@ -6,11 +6,11 @@ import models.cms;
 class DCMSTheme : DCMSEntity {
   mixin(EntityThis!("CMSTheme"));
 
-  override void initialize(DConfigurationValue configSettings = null) {
+  override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
     this
-      .addAttributes([
+      .addValues([
         "themeId": UUIDAttribute
       ]) 
       .registerPath("cms_themes");

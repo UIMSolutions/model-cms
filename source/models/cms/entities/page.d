@@ -6,11 +6,11 @@ import models.cms;
 class DCMSPage : DCMSEntity {
   mixin(EntityThis!("CMSPage"));
 
-  override void initialize(DConfigurationValue configSettings = null) {
+  override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
     this
-      .addAttributes([
+      .addValues([
         "keywords": TagsAttribute,
         "isPrivate": BooleanAttribute,
         "page": UUIDAttribute,

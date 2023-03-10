@@ -6,11 +6,11 @@ import models.cms;
 class DCMSTutorial : DCMSPost {
   mixin(EntityThis!("CMSTutorial"));
 
-  override void initialize(DConfigurationValue configSettings = null) {
+  override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
     this
-      .addAttributes([
+      .addValues([
         "tutorialId": UUIDAttribute
       ]) 
       .registerPath("cms_tutorials");
