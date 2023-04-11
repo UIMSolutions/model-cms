@@ -13,7 +13,8 @@ class DCMSLink : DCMSPost {
       .addValues([
         "linkId": UUIDAttribute
       ]) 
-      .registerPath("cms_links");
+      .registerPath("cms_links")
+      .routingPath("/cms/links");
   }
 }
 mixin(EntityCalls!("CMSLink"));

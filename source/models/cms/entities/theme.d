@@ -13,7 +13,8 @@ class DCMSTheme : DCMSEntity {
       .addValues([
         "themeId": UUIDAttribute
       ]) 
-      .registerPath("cms_themes");
+      .registerPath("cms_themes")
+      .routingPath("/cms/themes");
   }
 }
 mixin(EntityCalls!("CMSTheme"));

@@ -13,7 +13,8 @@ class DCMSTutorial : DCMSPost {
       .addValues([
         "tutorialId": UUIDAttribute
       ]) 
-      .registerPath("cms_tutorials");
+      .registerPath("cms_tutorials")
+      .routingPath("/cms/tutorials");
   }
 }
 mixin(EntityCalls!("CMSTutorial"));

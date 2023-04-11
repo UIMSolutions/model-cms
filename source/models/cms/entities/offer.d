@@ -13,7 +13,8 @@ class DCMSOffer : DCMSPost {
       .addValues([
         "offerId": UUIDAttribute
       ]) 
-      .registerPath("cms_offers");
+      .registerPath("cms_offers")
+      .routingPath("/cms/offers");
   }
 }
 mixin(EntityCalls!("CMSOffer"));

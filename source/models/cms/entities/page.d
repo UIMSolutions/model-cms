@@ -16,7 +16,8 @@ class DCMSPage : DCMSEntity {
         "page": UUIDAttribute,
         "url": StringAttribute
       ])
-      .registerPath("cms_pages");
+      .registerPath("cms_pages")
+      .routingPath("/cms/pages");
   }
 }
 mixin(EntityCalls!("CMSPage"));

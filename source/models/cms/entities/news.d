@@ -14,7 +14,8 @@ class DCMSNewsItem : DCMSPost {
       .addValues([
         "newsId": UUIDAttribute 
       ])
-      .registerPath("cms_news");
+      .registerPath("cms_news")
+      .routingPath("/cms/news");
   }
 }
 mixin(EntityCalls!("CMSNewsItem"));
