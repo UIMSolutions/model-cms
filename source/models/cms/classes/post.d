@@ -32,15 +32,14 @@ class DCMSPost : DCMSEntity {
     return cast(O)this;
   }
 
-  override DEntity fromRequest(STRINGAA parameters) {
-    super.fromRequest(parameters);
+  override void fromRequest(STRINGAA parameters, bool usePrefix = true) {
+    super.fromRequest(parameters, usePrefix);
     foreach(k, v; [
       "entity_keywords":"keywords", 
       "entity_isprivate":"isPrivate", 
       "entity_theme":"themeId"]) {
       if (k in parameters) this[v] = parameters[k];
     }
-    return this;
   }
 
   override void fromJson(Json aJson) {

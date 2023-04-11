@@ -17,6 +17,7 @@ public import models.cms.attributes;
 public import models.cms.classes;
 public import models.cms.entities;
 public import models.cms.tests;
+public import models.cms.usecases;
 
 static this() {
   EntityRegistry

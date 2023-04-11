@@ -13,7 +13,8 @@ class DCMSDemo : DCMSPost {
       .addValues([
         "demoId": UUIDAttribute
       ]) 
-      .registerPath("cms_demos");
+      .registerPath("cms_demos")
+      .routingPath("/cms/demos");
   }
 }
 mixin(EntityCalls!("CMSDemo"));

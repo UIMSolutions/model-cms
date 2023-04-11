@@ -13,7 +13,8 @@ class DCMSGlossaryItem : DCMSPost {
       .addValues([
         "glossaryId": UUIDAttribute
       ]) 
-      .registerPath("cms_glossary");
+      .registerPath("cms_glossary")
+      .routingPath("/cms/glossary");
   }
 }
 mixin(EntityCalls!("CMSGlossaryItem"));

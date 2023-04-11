@@ -22,8 +22,8 @@ class DCMSEntity : DEntity {
     this["isIndex"] = "nothing"; 
   }
 
-  override DEntity fromRequest(STRINGAA parameters) {
-    super.fromRequest(parameters);
+  override void fromRequest(STRINGAA parameters, bool usePrefix = true) {
+    super.fromRequest(parameters, usePrefix);
     foreach(k, v; [
       "entity_imagepath":"imagePath", 
       "entity_isindex":"isIndex", 
@@ -33,12 +33,10 @@ class DCMSEntity : DEntity {
       "entity_text":"text"]) {
       if (k in parameters) this[v] = parameters[k];
     }
-    return this;
   }
   unittest {
-    version(test_model_cms) {
-      // TOD Add Tests
-    }}
+
+  }
 }
 mixin(EntityCalls!("CMSEntity"));
 

@@ -13,7 +13,8 @@ class DCMSDocu : DCMSPost {
       .addValues([
         "docu": UUIDAttribute
       ]) 
-    .registerPath("cms_docus");
+    .registerPath("cms_docus")
+      .routingPath("/cms/docus");
   }
 }
 mixin(EntityCalls!("CMSDocu"));

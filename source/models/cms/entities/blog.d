@@ -13,8 +13,20 @@ class DCMSBlog : DCMSPost {
       .addValues([
         "blogId": UUIDAttribute
       ]) 
-      .registerPath("cms_blogs");
+      .registerPath("cms_blogs")
+      .routingPath("/cms/blogs");
   }
 }
 mixin(EntityCalls!("CMSBlog"));
 
+///
+unittest {
+  auto id = randomUUID;
+  auto blog = new DCMSBlog;
+  assert(blog.className == "CMSBlog");
+  assert(blog.className != "abc");
+  
+  blog["blogId"] = id;
+  assert(blog["blogId"] == id.toString);
+  assert(blog["blogId"] != randomUUID.toString);
+}
