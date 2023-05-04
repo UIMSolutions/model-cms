@@ -32,8 +32,8 @@ class DCMSPost : DCMSEntity {
     return cast(O)this;
   }
 
-  override void fromRequest(STRINGAA parameters, bool usePrefix = true) {
-    super.fromRequest(parameters, usePrefix);
+  override void readFromRequest(STRINGAA parameters, bool usePrefix = true) {
+    super.readFromRequest(parameters, usePrefix);
     foreach(k, v; [
       "entity_keywords":"keywords", 
       "entity_isprivate":"isPrivate", 

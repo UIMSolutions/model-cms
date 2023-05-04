@@ -22,8 +22,8 @@ class DCMSEntity : DEntity {
     this["isIndex"] = "nothing"; 
   }
 
-  override void fromRequest(STRINGAA parameters, bool usePrefix = true) {
-    super.fromRequest(parameters, usePrefix);
+  override void readFromRequest(STRINGAA parameters, bool usePrefix = true) {
+    super.readFromRequest(parameters, usePrefix);
     foreach(k, v; [
       "entity_imagepath":"imagePath", 
       "entity_isindex":"isIndex", 
