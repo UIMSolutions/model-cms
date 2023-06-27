@@ -1,8 +1,8 @@
 module models.cms.entities.theme;
 
-@safe:
 import models.cms;
 
+@safe:
 class DCMSTheme : DCMSEntity {
   mixin(EntityThis!("CMSTheme"));
 

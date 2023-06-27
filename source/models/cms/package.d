@@ -16,7 +16,9 @@ public import uim.models;
 public {
   import models.cms.attributes;
   import models.cms.classes;
+  import models.cms.elements;
   import models.cms.entities;
+  import models.cms.helpers;
   import models.cms.tests;
   import models.cms.usecases;
 }
