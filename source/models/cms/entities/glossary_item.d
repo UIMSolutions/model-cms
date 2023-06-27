@@ -1,8 +1,8 @@
 module models.cms.entities.glossary_item;
 
-@safe:
 import models.cms;
 
+@safe:
 class DCMSGlossaryItem : DCMSPost {
   mixin(EntityThis!("CMSGlossaryItem"));
 

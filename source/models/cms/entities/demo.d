@@ -1,8 +1,8 @@
 module models.cms.entities.demo;
 
-@safe:
 import models.cms;
 
+@safe:
 class DCMSDemo : DCMSPost {
   mixin(EntityThis!("CMSDemo"));
 

@@ -1,8 +1,8 @@
 module models.cms.classes.entity;
 
-@safe:
 import models.cms;
 
+@safe:
 class DCMSEntity : DEntity {
   mixin(EntityThis!("CMSEntity"));
 
