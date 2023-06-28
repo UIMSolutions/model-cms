@@ -13,11 +13,15 @@ public import uim.models;
 
 // public import uim.models;
 
-public import models.cms.attributes;
-public import models.cms.classes;
-public import models.cms.entities;
-public import models.cms.tests;
-public import models.cms.usecases;
+public {
+  import models.cms.attributes;
+  import models.cms.classes;
+  import models.cms.elements;
+  import models.cms.entities;
+  import models.cms.helpers;
+  import models.cms.tests;
+  import models.cms.usecases;
+}
 
 static this() {
   EntityRegistry

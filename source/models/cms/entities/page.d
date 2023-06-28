@@ -1,8 +1,8 @@
 module models.cms.entities.page;
 
-@safe:
 import models.cms;
 
+@safe:
 class DCMSPage : DCMSEntity {
   mixin(EntityThis!("CMSPage"));
 

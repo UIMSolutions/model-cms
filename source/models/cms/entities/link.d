@@ -1,8 +1,8 @@
 module models.cms.entities.link;
 
-@safe:
 import models.cms;
 
+@safe:
 class DCMSLink : DCMSPost {
   mixin(EntityThis!("CMSLink"));
 

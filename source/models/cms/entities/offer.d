@@ -1,8 +1,8 @@
 module models.cms.entities.offer;
 
-@safe:
 import models.cms;
 
+@safe:
 class DCMSOffer : DCMSPost {
   mixin(EntityThis!("CMSOffer"));
 
