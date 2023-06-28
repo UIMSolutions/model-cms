@@ -114,7 +114,7 @@ unittest { // Test attribute "link"
 
     auto json = Json.emptyObject;
     json["link"] = "nothing";
-    writeln(json);
+    debug writeln(json);
     entity.fromJson(json);
     assert(entity["link"] == "nothing"); 
 
